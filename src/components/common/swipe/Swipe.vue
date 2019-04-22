@@ -1,10 +1,11 @@
 <template>
  <div>
-    <mt-swipe :auto="0">
+   111
+    <!-- <mt-swipe :auto="0">
         <mt-swipe-item class="one">1</mt-swipe-item>
         <mt-swipe-item class="two">2</mt-swipe-item>
         <mt-swipe-item class="three">3</mt-swipe-item>
-    </mt-swipe>
+    </mt-swipe> -->
  </div>
 </template>
 
@@ -16,7 +17,7 @@
      }
    },
    components: {
-
+     
    }
  }
 </script>

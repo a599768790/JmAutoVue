@@ -29,11 +29,11 @@
 <style lang="scss" scoped>
   .header-top{
     text-align: center;
-    height: 0.8rem;
+    height: 0.5rem;
     background: #26a2ff;
-    line-height: 0.8rem;
+    line-height: 0.5rem;
     .text{
-      font-size:0.36rem;
+      font-size:0.18rem;
       color:#fff;
     }
   }

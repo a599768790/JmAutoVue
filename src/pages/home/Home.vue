@@ -1,9 +1,6 @@
 <template>
  <div>
-
     <router-view></router-view>
-  
-    
     <!-- <div class="footer">
       <span>智诚通科技开发有限公司</span>
     </div> -->
