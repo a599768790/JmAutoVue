@@ -11,7 +11,6 @@ import 'vant/lib/index.css';
 
 import home from '@/pages/Home/Home'
 import main from '@/pages/HomeIndex/Main'
-
 import housepropety from '@/pages/Business/HousePropety'
 import naturealpropety from '@/pages/Business/NaturealPropety'
 import registerpropety from '@/pages/Business/RegisterPropety'
