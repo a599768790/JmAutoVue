@@ -4,7 +4,7 @@
       recalc = function () {
           var clientWidth = docEl.clientWidth;
           if (!clientWidth) return;
-          docEl.style.fontSize = (clientWidth / 3.75) + 'px';
+          docEl.style.fontSize = (clientWidth / 7.5) + 'px';
       };
   if (!doc.addEventListener) return;
   win.addEventListener(resizeEvt, recalc, false);

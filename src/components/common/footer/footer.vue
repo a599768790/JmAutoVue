@@ -26,11 +26,11 @@
     left:0;
     right:0;
     bottom:0;
-    height:0.4rem;
-    font-size:0.18rem;
+    height:0.54rem;
+    font-size:0.28rem;
     background: #1989fa;
     text-align: center;
-    line-height: 0.4rem;
+    line-height: 0.54rem;
     color:#fff;
   }
 </style>

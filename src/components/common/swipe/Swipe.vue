@@ -31,7 +31,7 @@
     border: 0;
     display: block;
     width: 100%;
-    height:1.42rem;
+    height:2.86rem;
 
   }
 }
