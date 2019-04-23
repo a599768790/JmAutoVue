@@ -103,7 +103,7 @@ export default new Router({
     {
       path: '/pdf',
       name: 'PDF',
-      component: () => import('@/components/common/pdf/Pdf.vue')
+      component: () => import('@/common/pdf/Pdf.vue')
     },
     {
       path: '/test',
