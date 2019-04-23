@@ -1,7 +1,7 @@
 <template>
  <div>
    <div class="swipe">
-     <img src="@/assets/pic/xiq_02.png">
+     <img src="@/assets/pic/banner.jpg">
    </div>
     <!-- <mt-swipe :auto="0">
         <mt-swipe-item class="one">1</mt-swipe-item>

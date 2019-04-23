@@ -20,10 +20,10 @@
 
 <script>
 import headertop from '@/common/header/head'
- import swipe from '@/common/swipe/swipe'
- import returnnext from '@/common/returnnext/returnnext'
+import swipe from '@/common/swipe/swipe'
+import returnnext from '@/common/returnnext/returnnext'
 import bottom from '@/common/footer/footer'
- import axios from 'axios'
+import axios from 'axios'
  export default {
    data () {
      return {
