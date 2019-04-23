@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import headertop from '@/components/common/header/head'
- import swipe from '@/components/common/swipe/swipe'
- import returnnext from '@/components/common/returnnext/returnnext'
-import bottom from '@/components/common/footer/footer'
+import headertop from '@/common/header/head'
+ import swipe from '@/common/swipe/swipe'
+ import returnnext from '@/common/returnnext/returnnext'
+import bottom from '@/common/footer/footer'
  import axios from 'axios'
  export default {
    data () {

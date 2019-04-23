@@ -18,8 +18,8 @@
 </template>
 
 <script>
- import swipe from '@/components/common/swipe/swipe'
- import returnnext from '@/components/common/returnnext/returnnext'
+ import swipe from '@/common/swipe/swipe'
+ import returnnext from '@/common/returnnext/returnnext'
  import axios from 'axios'
  export default {
    data () {

@@ -10,11 +10,11 @@
 
 <script>
 //  import homeheader from '@/pages/HomeIndex/HomeHeader'
- import headertop from '@/components/common/header/head'
- import swipe from '@/components/common/swipe/swipe'
+ import headertop from '@/common/header/head'
+ import swipe from '@/common/swipe/swipe'
 //  import swipe from '@/pages/HomeIndex/swipe'
  import maincontent from '@/pages/HomeIndex/MainContent'
- import bottom from '@/components/common/footer/footer'
+ import bottom from '@/common/footer/footer'
 
  export default {
    data () {

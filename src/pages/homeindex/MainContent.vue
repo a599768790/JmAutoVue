@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import loading from '@/components/common/loading/loading'
+import loading from '@/common/loading/loading'
 // import {getToke} from '@/api/base'
 import * as test from '@/api/index'
 import axios from 'axios'
