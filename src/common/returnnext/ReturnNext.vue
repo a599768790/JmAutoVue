@@ -3,23 +3,23 @@
 
     <!-- <router-link :to=url.homeurl>
     </router-link> -->
+    <!-- <button class="printBtn" @click="tohousepropety">自助打印</button>
+    <button class="printBtn" @click="tohousepropety">自助打印</button>
+    <button class="printBtn" @click="tohousepropety">自助打印</button>
+    <button class="printBtn" @click="tohousepropety">自助打印</button>
+    <button class="printBtn" @click="tohousepropety">自助打印</button>
+    <button class="printBtn" @click="tohousepropety">自助打印</button>
+    <button class="printBtn" @click="tohousepropety">自助打印</button> -->
 
-    <van-button round type="danger" v-show="url.getsfzdisplay == null ? 'true' : url.getsfzdisplay" size="small" @click="getsfz">读取身份证</van-button>
-
+    <van-button type="danger" v-show="url.getsfzdisplay == null ? 'true' : url.getsfzdisplay" size="small" @click="getsfz">读取身份证</van-button>
     <van-button round type="danger" size="small" @click="returnhome">返回</van-button>
-
     <router-link :to=url.addspouse v-show="url.spousedisplay">
         <van-button round type="danger" size="small">添加配偶</van-button>
     </router-link>
     <router-link :to=url.addchildren v-show="url.childrendisplay">
         <van-button round type="danger" size="small">添加子女</van-button>
     </router-link>
-    <!-- <router-link :to=url.nexturl v-show="url.nextdisplay">
-        <van-button round type="danger" size="small">下一步</van-button>
-    </router-link> -->
-
     <van-button round type="danger" size="small" v-show="url.nextdisplay" @click="nextstep">下一步</van-button>
-
     <van-button round type="danger" size="small" v-show="url.submitdisplay" @click="submit">提交</van-button>
 
 

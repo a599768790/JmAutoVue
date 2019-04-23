@@ -8,7 +8,7 @@
         <span class="spanTxt">姓名</span>
         <input class="inputTxt" placeholder="请输入姓名" v-model="housePropety.name">
       </div>
-      <!-- <div class="divTxt">
+      <div class="divTxt">
         <span class="spanTxt">性别</span>
         <input class="inputTxt" placeholder="请输入性别" v-model="housePropety.sex">
       </div>
@@ -31,7 +31,7 @@
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
         <input class="inputTxt" placeholder="请输入签发机关" v-model="housePropety.effectivedate">
-      </div> -->
+      </div>
 
       <!-- <mt-field label="姓名" placeholder="请输入姓名" v-model="housePropety.name"></mt-field>
       <mt-field label="性别" placeholder="请输入性别" v-model="housePropety.sex"></mt-field>
@@ -155,10 +155,11 @@ import axios from 'axios'
   // }
   
   .form{
-    padding:0.2rem 0.6rem 0 0.6rem;
+    padding:0.1rem 0.6rem 0 0.6rem;
     .divTxt{
       // line-height: 0.54rem;
       height: 0.50rem;
+      margin-top:0.2rem;
     }
     .spanTxt{
       color:#707070;
@@ -170,10 +171,10 @@ import axios from 'axios'
 
     }
     .inputTxt{
-        padding: 0.05rem 0;
+        // padding: 0.05rem 0;
         width: 72%;
-        height: 0.48rem;
-        line-height: 0.58rem;
+        height: 0.42rem;
+        line-height: 0.42rem;
         font-size: 0.34rem;
         vertical-align: top;
         text-indent: 0.2rem;
