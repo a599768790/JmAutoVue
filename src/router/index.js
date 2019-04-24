@@ -12,7 +12,6 @@ import 'vant/lib/index.css';
 import home from '@/pages/Home/Home'
 import main from '@/pages/HomeIndex/Main'
 import housepropety from '@/pages/Business/HousePropety'
-import naturealpropety from '@/pages/Business/NaturealPropety'
 import addspouse from '@/pages/Business/AddSpouse'
 import addchildren from '@/pages/Business/AddChildren'
 import enterinfo from '@/pages/Business/EnterInfo'
@@ -44,11 +43,6 @@ export default new Router({
           path: '/Business/housepropety',
           name: 'housepropety',
           component: housepropety
-        },
-        {
-          path: '/Business/naturealpropety',
-          name: 'naturealpropety',
-          component: naturealpropety
         },
         {
           //添加配偶

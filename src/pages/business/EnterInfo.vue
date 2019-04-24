@@ -3,22 +3,21 @@
     <!-- <mt-header fixed title="您录入的信息" class="header" ref="header"></mt-header> -->
     <headertop :headerText="actualText"></headertop>
     <div class="form">
-      <div class="enterPerson" v-for="(item,index) in list" :key='item.id'>
-        <div class="divTxt">
-          <p class="pName">
-            <span class="spanTxt">姓名</span>
-            <input class="inputTxt" placeholder="请输入姓名" :value="item.name">
-          </p>
-          <p class="pIdCard">
-            <span class="spanTxt">身份证</span>
-            <input class="inputTxt" placeholder="请输入身份证" :value="item.hkidCardNumber">
-          </p>
-          <p class="pRelation">
-            <span class="spanTxt">关系</span>
-            <input class="inputTxt" placeholder="请输入关系" :value="item.relation">
-          </p>
-          <button @click="del(index,item.id,item.relation)">删除</button>
-        </div>
+      <div class="divTxt" v-for="(item,index) in list" :key='item.id'>
+        <p class="pName">
+          <span class="spanTxt">姓名</span>
+          <input class="inputTxt" placeholder="请输入姓名" :value="item.name">
+        </p>
+        <p class="pIdCard">
+          <span class="spanTxt">身份证</span>
+          <input class="inputTxt" placeholder="请输入身份证" :value="item.hkidCardNumber">
+        </p>
+        <p class="pRelation">
+          <span class="spanTxt">关系</span>
+          <input class="inputTxt" placeholder="请输入关系" :value="item.relation">
+        </p>
+        <button class="delBtn" @click="del(index,item.id,item.relation)">删除</button>
+        
 
         <!-- <mt-field label="姓名" placeholder="请输入姓名" v-model="item.name"></mt-field>
         <mt-field label="身份证" placeholder="请输入身份证号" v-model="item.hkidCardNumber"></mt-field>
@@ -113,37 +112,64 @@
   .form{
     //margin-top:1.1rem;
     padding:0.2rem 0.6rem 0 0.6rem;
-    height: 9.8rem;
+    height: 10.4rem;
     overflow: auto;
     .enter-relation{
       width:98%;
     }
     .divTxt{
-      // line-height: 0.54rem;
-      height: 0.50rem;
-      margin-top:0.2rem;
+        margin-top: 0.24rem;
+        position: relative;
+        background: #63bfeb;
+        border-radius: 0.15rem;
+        padding:0.1rem 0.2rem;
+      .pName{
+        height:0.5rem;
+        border-bottom:0.02rem dashed #fff;
+      }
+      .pIdCard{
+        height:0.5rem;
+        border-bottom:0.02rem dashed #fff;
+      }
+      .pRelation{
+        height:0.5rem;
+      }
+      .delBtn{
+        position: absolute;
+        right: 0.2rem;
+        bottom: 0.02rem;
+        font-size: 0.3rem;
+        width: 1rem;
+        height: 0.52rem;
+        background: #c53238;
+        border: none;
+        color: #fff;
+        border-radius:0.1rem;
+      }
     }
     .spanTxt{
       color:#707070;
       font-size:0.28rem;
       vertical-align: top;
-      padding-top:0.2rem;
+      padding-top:0.1rem;
       display: inline-block;
-      width:1.3rem;
+      width:1rem;
+      color:#fff;
 
     }
     .inputTxt{
         // padding: 0.05rem 0;
-        width: 72%;
+        width: 75%;
         height: 0.42rem;
         line-height: 0.42rem;
         font-size: 0.34rem;
         vertical-align: top;
         text-indent: 0.2rem;
         border-radius: 0.1rem;
-        border:1px solid #eee;
+        border:none;
         font-size:0.28rem;
-        color:#bbbaba;
+        color:#fff;
+        background:none;
     }
   }
   // .mint-cell{
