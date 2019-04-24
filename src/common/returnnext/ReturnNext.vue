@@ -6,7 +6,7 @@
     <button class="blueBtn" v-show="url.getsfzdisplay == null ? 'true' : url.getsfzdisplay" @click="getsfz" >读取身份证</button>
     <button class="blueBtn" :class="active" @click="returnhome">返回</button>
     <router-link :to=url.addspouse v-show="url.spousedisplay">
-        <button class="blueBtn" @click="returnhome">添加配偶</button>
+        <button class="blueBtn">添加配偶</button>
     </router-link>
     <router-link :to=url.addchildren v-show="url.childrendisplay">
         <button class="blueBtn">添加子女</button>
