@@ -28,7 +28,7 @@
     bottom:0;
     height:0.8rem;
     font-size:0.32rem;
-    background: #1989fa;
+    background: #2365c4;
     text-align: center;
     line-height: 0.8rem;
     color:#fff;

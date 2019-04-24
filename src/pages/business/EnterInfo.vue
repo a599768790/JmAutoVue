@@ -1,7 +1,7 @@
 <template>
  <div class="content">
-    <mt-header fixed title="您录入的信息" class="header" ref="header"></mt-header>
-    <!-- <swipe></swipe> -->
+    <!-- <mt-header fixed title="您录入的信息" class="header" ref="header"></mt-header> -->
+    <headertop :headerText="actualText"></headertop>
     <div class="form" ref="form">
       <div class="enterPerson" v-for="(item,index) in list" :key='item.id'>
         <mt-field label="姓名" placeholder="请输入姓名" v-model="item.name"></mt-field>
@@ -13,11 +13,12 @@
       </div>
     </div>
     <returnnext :url="urlList" :dataList="list" class="fix-renturn"></returnnext>
-    <bottom></bottom>
+    <bottom :active="actualActive"></bottom>
  </div>
 </template>
 
 <script>
+ import headertop from '@/common/header/head'
  import swipe from '@/common/swipe/swipe'
  import returnnext from '@/common/returnnext/returnnext'
  import bottom from '@/common/footer/footer'
@@ -35,17 +36,21 @@
         childrendisplay:true,
         nextdisplay:false,
         submitdisplay:true,
-        getsfzdisplay:false
+        getsfzdisplay:false,
+        active:"active"
       },
+      actualText:'您录入的信息',
+      //actualActive:"active"
      }
    },
    components: {
-    swipe,
+    headertop,
     returnnext,
     bottom
    },
    mounted () {
       this.loadPersons();
+      
     },
    methods:{
           loadPersons () {
@@ -77,6 +82,10 @@
             localStorage.setItem('PrintList',JSON.stringify(PrintList));
 
           },
+          //设置
+          Setbtnwidth () {
+
+          }
     }
  }
 </script>
@@ -86,7 +95,7 @@
     overflow:initial;
   }
   .form{
-    margin-top:1.1rem;
+    //margin-top:1.1rem;
     padding:0.2rem 0.6rem 0 0.6rem;
     height: 9.8rem;
     overflow: auto;

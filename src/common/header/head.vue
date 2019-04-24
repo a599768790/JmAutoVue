@@ -19,6 +19,7 @@
    },
    props:{
      headerText:String
+     //父组件向子组件传值
    },
    components: {
 

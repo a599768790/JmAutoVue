@@ -13,7 +13,6 @@ import home from '@/pages/Home/Home'
 import main from '@/pages/HomeIndex/Main'
 import housepropety from '@/pages/Business/HousePropety'
 import naturealpropety from '@/pages/Business/NaturealPropety'
-import registerpropety from '@/pages/Business/RegisterPropety'
 import addspouse from '@/pages/Business/AddSpouse'
 import addchildren from '@/pages/Business/AddChildren'
 import enterinfo from '@/pages/Business/EnterInfo'
@@ -50,11 +49,6 @@ export default new Router({
           path: '/Business/naturealpropety',
           name: 'naturealpropety',
           component: naturealpropety
-        },
-        {
-          path: '/Business/registerpropety',
-          name: 'registerpropety',
-          component: registerpropety
         },
         {
           //添加配偶
