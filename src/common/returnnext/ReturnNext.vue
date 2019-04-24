@@ -4,7 +4,7 @@
     <!-- <router-link :to=url.homeurl>
     </router-link> -->
     <button class="blueBtn" v-show="url.getsfzdisplay == null ? 'true' : url.getsfzdisplay" @click="getsfz" >读取身份证</button>
-    <button class="blueBtn" :class="url.active" @click="returnhome">返回</button>
+    <button class="blueBtn" :class="active" @click="returnhome">返回</button>
     <router-link :to=url.addspouse v-show="url.spousedisplay">
         <button class="blueBtn" @click="returnhome">添加配偶</button>
     </router-link>
@@ -37,13 +37,12 @@
    data () {
      return {
          number:'666',
-        //  isactive:"active"
      }
    },
    props:{
         url:Object,
         dataList:Array,
-        // active:String
+        active:String
     },
    components: {
 
