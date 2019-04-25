@@ -48,8 +48,6 @@
        //下一步
        nextstep () {
            this.$emit('actualnextstep')
-           
-            
        },
         //提交打印pdf
         submit:function(){
@@ -90,7 +88,6 @@
             　　console.log(error);
             });
         },
-
         //测试提交打印pdf
         submittoprint:function(){
             let pdfpath = 'test.pdf'

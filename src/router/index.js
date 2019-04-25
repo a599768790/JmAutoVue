@@ -96,6 +96,10 @@ export default new Router({
     {
       path: '/test',
       component: () => import('@/pages/business/Test.vue')
+    },
+    {
+      path: '/picker',
+      component: () => import('@/pages/business/picker.vue')
     }
     
 

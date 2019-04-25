@@ -34,6 +34,7 @@
     </div>
     <returnnext :url="urlList" @actualgetsfz="getsfz" @actualnextstep="nextstep"></returnnext>
     <bottom></bottom>
+    
  </div>
 </template>
 
@@ -58,6 +59,7 @@ import axios from 'axios'
         getsfzdisplay:true
       },
       actualText:'请刷取自助终端的本人身份证',
+
      }
    },
    components: {
@@ -127,7 +129,7 @@ import axios from 'axios'
             window.external.UniteMethod("ReadIDCardByJs","");
           },400);
       },
-          
+      
 
 
           
@@ -173,5 +175,5 @@ import axios from 'axios'
     line-height: 0.48rem;
     }
   }
-
+  
 </style>

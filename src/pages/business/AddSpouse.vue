@@ -140,7 +140,7 @@
       color:#707070;
       font-size:0.28rem;
       vertical-align: top;
-      padding-top:0.2rem;
+      padding-top:0.1rem;
       display: inline-block;
       width:1.3rem;
     }

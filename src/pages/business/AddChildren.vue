@@ -18,7 +18,7 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">性别</span>
-        <input class="inputTxt" placeholder="请输入性别" v-model="children.sex">
+        <input class="inputTxt" placeholder="请输入性别" @click="chooseSex" v-model="children.sex">
       </div>
       <div class="divTxt">
         <span class="spanTxt">出生</span>
@@ -43,7 +43,24 @@
     </div>
     <returnnext :url="urlList" @actualgetsfz='getsfz' @actualnextstep='nextstep'></returnnext>
     <bottom></bottom>
+    <van-popup v-model="sexDisplay" :overlay="false">
+        <van-picker
+            show-toolbar
+            :columns="columns"
+            :visible-item-count="2"
+            @confirm="sexonConfirm"
+            @cancel="sexonCancel"
+        />
+    </van-popup>
+    <!-- <van-popup v-model="birthDisplay" :overlay="false">
+      <van-datetime-picker
+        type="date"
+        :visible-item-count="3"
+        @confirm="birthonConfirm"
+        @cancel="birthonCancel"
+      /> -->
 
+    </van-popup>
  </div>
 </template>
 
@@ -68,7 +85,10 @@
         nextdisplay:true,
         getsfzdisplay:true
       },
-      actualText:"请刷取子女身份证"
+      actualText:"请刷取子女身份证",
+      sexDisplay: false,
+      birthDisplay:false,
+      columns: ['男', '女'],
      }
    },
    components: {
@@ -131,7 +151,29 @@
                 // }
                 })
               }
-          }
+          },
+          //选择性别
+          chooseSex () {
+              this.sexDisplay = true;
+          },
+          sexonConfirm(value, index) {
+            this.children.sex = value;
+            this.sexDisplay = false;
+          },
+          sexonCancel () {
+            this.sexDisplay = false;
+          },
+          // chooseBirth () {
+          //   this.birthDisplay = true;
+          // },
+          // birthonConfirm(value) {
+          //   this.children.birthDate = value;
+          //   this.birthDisplay = false;
+          // },
+          // birthonCancel () {
+          //   this.birthDisplay = false;
+          // }
+
     }
  }
 </script>
@@ -149,7 +191,7 @@
       color:#707070;
       font-size:0.28rem;
       vertical-align: top;
-      padding-top:0.2rem;
+      padding-top:0.1rem;
       display: inline-block;
       width:1.3rem;
 
@@ -174,6 +216,10 @@
     }
 
   }
-
+  .van-popup{
+      width: 7.52rem;
+      top: 83%;
+      height: 3rem;
+  }
 
 </style>
