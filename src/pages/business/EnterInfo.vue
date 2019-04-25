@@ -56,16 +56,24 @@
    },
    mounted () {
       this.loadPersons();
-      
     },
    methods:{
           loadPersons () {
             var list = JSON.parse(localStorage.getItem("PrintList"));
             this.list = list;
+            // for(let i=0; i<list.length; i++) {
+            //     if(list[i].relation == "配偶") {
+            //         this.urlList.spousedisplay =false;
+            //     }
+            // }
+            // let v;
+            //判断数组里面是否存在某个值
+            for(let v of list) {
+                if(v.relation == "配偶") {
+                    this.urlList.spousedisplay =false;
+                }
+            }
           },
-          // addPersonNext () {
-          //   alert("111");
-          // },
           del (index,id,relation) {
             console.log(id)//当前id
             console.log(index)
@@ -86,11 +94,6 @@
             var PrintList = JSON.parse(localStorage.getItem("PrintList") || '[]')
             PrintList.splice(index,1);
             localStorage.setItem('PrintList',JSON.stringify(PrintList));
-
-          },
-          //设置
-          Setbtnwidth () {
-
           }
     }
  }

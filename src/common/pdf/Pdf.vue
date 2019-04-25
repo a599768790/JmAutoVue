@@ -84,7 +84,6 @@ export default {
       var response = window.external.UniteMethod("MSPrintResultToJs");
       if (response.status == 1){
         alert("成功!");
-
       }
       if(response.status == 0){
         alert("打印失败!!")
