@@ -17,14 +17,6 @@
           <input class="inputTxt" placeholder="请输入关系" :value="item.relation">
         </p>
         <button class="delBtn" @click="del(index,item.id,item.relation)">删除</button>
-        
-
-        <!-- <mt-field label="姓名" placeholder="请输入姓名" v-model="item.name"></mt-field>
-        <mt-field label="身份证" placeholder="请输入身份证号" v-model="item.hkidCardNumber"></mt-field>
-        <mt-field label="关系" placeholder="请输入关系" v-model="item.relation" class='enter-relation'>
-          <van-button round type="danger" size="small" @click="del(index,item.id,item.relation)">删除</van-button>
-        </mt-field> -->
-        
       </div>
     </div>
     <returnnext :active="actualActive" :url="urlList" :dataList="list" class="fix-renturn"></returnnext>
@@ -52,7 +44,6 @@
         nextdisplay:false,
         submitdisplay:true,
         getsfzdisplay:false,
-        
       },
       actualText:'您录入的信息',
       actualActive:"active"//动态绑定样式

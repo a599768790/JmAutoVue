@@ -1,16 +1,45 @@
 <template>
  <div>
-    <mt-header fixed title="请刷取子女身份证" class="header"></mt-header>
+    <!-- <mt-header fixed title="请刷取子女身份证" class="header"></mt-header> -->
+    <headertop :headerText="actualText"></headertop>
     <swipe></swipe>
     <div class="form">
-      <mt-field label="姓名" placeholder="请输入姓名" v-model="children.name"></mt-field>
+      <!-- <mt-field label="姓名" placeholder="请输入姓名" v-model="children.name"></mt-field>
       <mt-field label="性别" placeholder="请输入性别" v-model="children.sex"></mt-field>
       <mt-field label="出生" placeholder="请输入出生年月" v-model="children.birthDate"></mt-field>
       <mt-field label="民族" placeholder="请输入民族" v-model="children.nation"></mt-field>
       <mt-field class="address" label="地址" placeholder="请输入地址" v-model="children.address"></mt-field>
       <mt-field label="身份证号" placeholder="请输入身份证号" v-model="children.hkidCardNumber"></mt-field>
       <mt-field label="签发机关" placeholder="请输入签发机关" v-model="children.signorganization"></mt-field>
-      <mt-field label="有效期至" placeholder="有效期" v-model="children.effectivedate"></mt-field>
+      <mt-field label="有效期至" placeholder="有效期" v-model="children.effectivedate"></mt-field> -->
+      <div class="divTxt">
+        <span class="spanTxt">姓名</span>
+        <input class="inputTxt" placeholder="请输入姓名" v-model="children.name">
+      </div>
+      <div class="divTxt">
+        <span class="spanTxt">性别</span>
+        <input class="inputTxt" placeholder="请输入性别" v-model="children.sex">
+      </div>
+      <div class="divTxt">
+        <span class="spanTxt">出生</span>
+        <input class="inputTxt" placeholder="请输入出生年月" v-model="children.birthDate">
+      </div>
+      <div class="divTxt">
+        <span class="spanTxt">民族</span>
+        <input class="inputTxt" placeholder="请输入民族" v-model="children.nation">
+      </div>
+      <div class="divTxt">
+        <span class="spanTxt">地址</span>
+        <input class="inputTxt" placeholder="请输入地址" v-model="children.address">
+      </div>
+      <div class="divTxt">
+        <span class="spanTxt">身份证号</span>
+        <input class="inputTxt" placeholder="请输入身份证号" v-model="children.hkidCardNumber">
+      </div>
+      <div class="divTxt">
+        <span class="spanTxt">签发机关</span>
+        <input class="inputTxt" placeholder="请输入签发机关" v-model="children.effectivedate">
+      </div>
     </div>
     <returnnext :url="urlList" @actualgetsfz='getsfz' @actualnextstep='nextstep'></returnnext>
     <bottom></bottom>
@@ -19,6 +48,7 @@
 </template>
 
 <script>
+ import headertop from '@/common/header/head'
  import swipe from '@/common/swipe/swipe'
  import returnnext from '@/common/returnnext/returnnext'
  import bottom from '@/common/footer/footer'
@@ -38,9 +68,11 @@
         nextdisplay:true,
         getsfzdisplay:true
       },
+      actualText:"请刷取子女身份证"
      }
    },
    components: {
+    headertop,
     swipe,
     returnnext,
     bottom
@@ -104,15 +136,44 @@
  }
 </script>
 
-<style scoped>
-  .mint-header-title{
-    overflow:initial;
-  }
+<style lang="scss" scoped>
+  
   .form{
-    padding:0.2rem 0.6rem 0 0.6rem;
+    padding:0.1rem 0.6rem 0 0.6rem;
+    .divTxt{
+      // line-height: 0.54rem;
+      height: 0.50rem;
+      margin-top:0.2rem;
+    }
+    .spanTxt{
+      color:#707070;
+      font-size:0.28rem;
+      vertical-align: top;
+      padding-top:0.2rem;
+      display: inline-block;
+      width:1.3rem;
+
+    }
+    .inputTxt{
+        // padding: 0.05rem 0;
+        width: 72%;
+        height: 0.42rem;
+        line-height: 0.42rem;
+        font-size: 0.34rem;
+        vertical-align: top;
+        text-indent: 0.2rem;
+        border-radius: 0.1rem;
+        border:1px solid #eee;
+        font-size:0.28rem;
+        color:#bbbaba;
+    }
+    input::-webkit-input-placeholder {
+    font-size:0.28rem;
+    color:#bbbaba;
+    line-height: 0.48rem;
+    }
+
   }
-  .mint-cell{
-    min-height:0.82rem;
-  }
+
 
 </style>

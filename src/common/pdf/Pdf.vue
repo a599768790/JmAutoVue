@@ -3,15 +3,11 @@
     <canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>
     <div>
       <mt-button size="large" @click="MSPrintByJS">testprint</mt-button>
-      
     </div>
     <div>
       <mt-button size="large" @click="returnhome">返回首页</mt-button>
     </div>
   </div>
-
-
-  
 </template>
 
 <script>

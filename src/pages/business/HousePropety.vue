@@ -1,6 +1,5 @@
 <template>
  <div>
-    <!-- <mt-header fixed title="请刷取自助终端的本人身份证" class="header"></mt-header> -->
     <headertop :headerText="actualText"></headertop>
     <swipe></swipe>
     <div class="form">
@@ -32,15 +31,6 @@
         <span class="spanTxt">签发机关</span>
         <input class="inputTxt" placeholder="请输入签发机关" v-model="housePropety.effectivedate">
       </div>
-
-      <!-- <mt-field label="姓名" placeholder="请输入姓名" v-model="housePropety.name"></mt-field>
-      <mt-field label="性别" placeholder="请输入性别" v-model="housePropety.sex"></mt-field>
-      <mt-field label="出生" placeholder="请输入出生年月" v-model="housePropety.birthDate"></mt-field>
-      <mt-field label="民族" placeholder="请输入民族" v-model="housePropety.nation"></mt-field>
-      <mt-field class="address" label="地址" placeholder="请输入地址" v-model="housePropety.address"></mt-field>
-      <mt-field label="身份证号" placeholder="请输入身份证号" v-model="housePropety.hkidCardNumber"></mt-field>
-      <mt-field label="签发机关" placeholder="请输入签发机关" v-model="housePropety.grantDept"></mt-field> -->
-      <!-- <mt-field label="有效期至" placeholder="有效期" v-model="housePropety.effectivedate"></mt-field> -->
     </div>
     <returnnext :url="urlList" @actualgetsfz="getsfz" @actualnextstep="nextstep"></returnnext>
     <bottom></bottom>
@@ -101,7 +91,6 @@ import axios from 'axios'
           // }
           })
         }
-        
       },
       getInfoSucc (res) {
         res = res.data
@@ -149,11 +138,6 @@ import axios from 'axios'
 </script>
 
 <style lang="scss" scoped>
-
-  // .mint-header-title{
-  //   overflow:initial;
-  // }
-  
   .form{
     padding:0.1rem 0.6rem 0 0.6rem;
     .divTxt{
@@ -187,14 +171,7 @@ import axios from 'axios'
     font-size:0.28rem;
     color:#bbbaba;
     line-height: 0.48rem;
-
+    }
   }
-  }
-  // .mint-cell{
-  //   min-height:0.82rem;
-  // }
-  // .btn{
-  //   text-align: center
-  // }
 
 </style>

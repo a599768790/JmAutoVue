@@ -1,8 +1,5 @@
 <template>
  <div class="returnnext-div">
-
-    <!-- <router-link :to=url.homeurl>
-    </router-link> -->
     <button class="blueBtn" v-show="url.getsfzdisplay == null ? 'true' : url.getsfzdisplay" @click="getsfz" >读取身份证</button>
     <button class="blueBtn" :class="active" @click="returnhome">返回</button>
     <router-link :to=url.addspouse v-show="url.spousedisplay">
@@ -13,20 +10,6 @@
     </router-link>
     <button class="blueBtn" v-show="url.nextdisplay" @click="nextstep">下一步</button>
     <button class="blueBtn" v-show="url.submitdisplay" @click="submit">提交</button>
-
-
-    <!-- <van-button type="danger" v-show="url.getsfzdisplay == null ? 'true' : url.getsfzdisplay" size="small" @click="getsfz">读取身份证</van-button> -->
-    <!-- <van-button round type="danger" size="small" @click="returnhome">返回</van-button> -->
-    <!-- <router-link :to=url.addspouse v-show="url.spousedisplay">
-        <van-button round type="danger" size="small">添加配偶</van-button>
-    </router-link>
-    <router-link :to=url.addchildren v-show="url.childrendisplay">
-        <van-button round type="danger" size="small">添加子女</van-button>
-    </router-link>
-    <van-button round type="danger" size="small" v-show="url.nextdisplay" @click="nextstep">下一步</van-button>
-    <van-button round type="danger" size="small" v-show="url.submitdisplay" @click="submit">提交</van-button> -->
-
-
  </div>
 </template>
 
@@ -168,9 +151,10 @@
         border:none;
         color:#fff;
         font-size:0.28rem;
+        background: #29aae3;
     }
     .active{
-        background: #29aae3;
+        
     }
 }
 .van-button--danger{
