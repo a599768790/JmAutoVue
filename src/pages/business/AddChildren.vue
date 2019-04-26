@@ -26,7 +26,7 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">民族</span>
-        <input class="inputTxt" placeholder="请输入民族" v-model="children.nation">
+        <input class="inputTxt" placeholder="请输入民族" @click="chooseNation" v-model="children.nation">
       </div>
       <div class="divTxt">
         <span class="spanTxt">地址</span>
@@ -34,7 +34,7 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input class="inputTxt" placeholder="请输入身份证号" v-model="children.hkidCardNumber">
+        <input class="inputTxt" placeholder="请输入身份证号" @touchstart.stop="idshow = true" v-model="children.hkidCardNumber">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
@@ -52,7 +52,26 @@
             @cancel="sexonCancel"
         />
     </van-popup>
-    <calendar :show.sync="show" :mode="mode" @change="onChange"/>
+    <calendar :show.sync="calendarshow" :mode="mode" @change="onChange"/>
+
+    <van-popup class="nationPop" v-model="nationDisplay" :overlay="false">
+        <van-picker
+            show-toolbar
+            :columns="nationcolumns"
+            :visible-item-count="3"
+            @confirm="nationonConfirm"
+            @cancel="nationonCancel"
+        />
+    </van-popup>
+    <van-number-keyboard
+      :show="idshow"
+      extra-key="."
+      close-button-text="完成"
+      @blur="idshow = false"
+      @input="onInput"
+      @delete="onDelete"
+    />
+
  </div>
 </template>
 
@@ -80,10 +99,17 @@
       actualText:"请刷取子女身份证",
       sexDisplay: false,
       birthDisplay:false,
+      nationDisplay:false,
       columns: ['男', '女'],
+      nationcolumns:["汉族", "蒙古族", "回族", "藏族", "维吾尔族", "苗族", "彝族", "壮族", "布依族", "朝鲜族", "满族", "侗族", "瑶族", "白族",
+		"土家族", "哈尼族", "哈萨克族", "傣族", "黎族", "傈僳族", "佤族", "畲族", "高山族", "拉祜族", "水族", "东乡族", "纳西族", "景颇族", "柯尔克孜族", "土族", 
+		"达斡尔族", "仫佬族", "羌族", "布朗族", "撒拉族", "毛南族", "仡佬族", "锡伯族", "阿昌族", "普米族", "塔吉克族", "怒族", "乌孜别克族", "俄罗斯族", "鄂温克族", 
+		"德昂族", "保安族", "裕固族", "京族", "塔塔尔族", "独龙族", "鄂伦春族", "赫哲族", "门巴族", "珞巴族", "基诺族"],
       //日期控件
-      show: false,
+      calendarshow: false,
       mode: 'during',
+      //身份证输入
+      idshow: false
      }
    },
    components: {
@@ -160,10 +186,11 @@
           },
           //选择日期
           chooseBirth(mode) {
-            this.show = true;
+            this.calendarshow = true;
             this.mode = mode;
             this.children.birthDate = '';
           },
+          //填充
           onChange(date) {
             if (this.mode === 'single') {
               this.children.birthDate = date.format('YYYY-MM-DD');
@@ -172,6 +199,26 @@
             //   this.date = JSON.stringify(date.map((item) => item.format('YYYY-MM-DD')));
             // }
           },
+          //选择民族
+          chooseNation () {
+            this.nationDisplay = true;
+          },
+          nationonConfirm(value, index) {
+            this.children.nation = value;
+            this.nationDisplay = false;
+          },
+          nationonCancel () {
+            this.nationDisplay = false;
+          },
+          //身份证
+          onInput(value) {
+            //alert(value);
+            //console.log(value)
+            this.children.hkidCardNumber = value;
+          },
+          onDelete() {
+            alert('delete');
+          }
 
     }
  }
@@ -220,5 +267,8 @@
       top: 83%;
       height: 3rem;
   }
-
+  .nationPop{
+    height: 4rem;
+    top: 79%;
+  }
 </style>

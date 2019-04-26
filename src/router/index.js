@@ -78,9 +78,13 @@ export default new Router({
       component: () => import('@/pages/business/Test.vue')
     },
     {
-      path: '/picker',
-      component: () => import('@/pages/business/picker.vue')
-    }
+      path: '/datepicker',
+      component: () => import('@/pages/datepicker.vue')
+    },
+    {
+      path: '/keyboard',
+      component: () => import('@/pages/keyboard.vue')
+    },
     
 
   ]
