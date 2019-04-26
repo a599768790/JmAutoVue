@@ -22,7 +22,7 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">出生</span>
-        <input class="inputTxt" placeholder="请输入出生年月" v-model="children.birthDate">
+        <input class="inputTxt" placeholder="请输入出生年月" @click="chooseBirth('single')" v-model="children.birthDate">
       </div>
       <div class="divTxt">
         <span class="spanTxt">民族</span>
@@ -52,15 +52,7 @@
             @cancel="sexonCancel"
         />
     </van-popup>
-    <!-- <van-popup v-model="birthDisplay" :overlay="false">
-      <van-datetime-picker
-        type="date"
-        :visible-item-count="3"
-        @confirm="birthonConfirm"
-        @cancel="birthonCancel"
-      /> -->
-
-    </van-popup>
+    <calendar :show.sync="show" :mode="mode" @change="onChange"/>
  </div>
 </template>
 
@@ -89,6 +81,9 @@
       sexDisplay: false,
       birthDisplay:false,
       columns: ['男', '女'],
+      //日期控件
+      show: false,
+      mode: 'during',
      }
    },
    components: {
@@ -163,16 +158,20 @@
           sexonCancel () {
             this.sexDisplay = false;
           },
-          // chooseBirth () {
-          //   this.birthDisplay = true;
-          // },
-          // birthonConfirm(value) {
-          //   this.children.birthDate = value;
-          //   this.birthDisplay = false;
-          // },
-          // birthonCancel () {
-          //   this.birthDisplay = false;
-          // }
+          //选择日期
+          chooseBirth(mode) {
+            this.show = true;
+            this.mode = mode;
+            this.children.birthDate = '';
+          },
+          onChange(date) {
+            if (this.mode === 'single') {
+              this.children.birthDate = date.format('YYYY-MM-DD');
+            } 
+            // else {
+            //   this.date = JSON.stringify(date.map((item) => item.format('YYYY-MM-DD')));
+            // }
+          },
 
     }
  }

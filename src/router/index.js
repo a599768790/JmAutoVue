@@ -16,6 +16,11 @@ import addspouse from '@/pages/Business/AddSpouse'
 import addchildren from '@/pages/Business/AddChildren'
 import enterinfo from '@/pages/Business/EnterInfo'
 
+import Calendar from 'vue-mobile-calendar'//日期控件
+Vue.use(Calendar);
+
+//import datePicker from "../../static/js/datePicker.js"//正确引入statics脚本
+
 
 
 Vue.use(Router)
@@ -60,32 +65,7 @@ export default new Router({
           path: '/Business/enterinfo',
           name: 'enterinfo',
           component: enterinfo
-        },
-        // {
-        //   path: '/home',
-        //   name: 'home',
-        //   component: Home
-        // },
-        // {
-        //   path: '/recent',
-        //   name: 'recent',
-        //   component: Recent
-        // },
-        // {
-        //   path: '/guang',
-        //   name: 'guang',
-        //   component: Guang
-        // },
-        // {
-        //   path: '/order',
-        //   name: 'order',
-        //   component: Order
-        // },
-        // {
-        //   path: '/me',
-        //   name: 'me',
-        //   component: Me
-        // },
+        }
       ]
     },
     {

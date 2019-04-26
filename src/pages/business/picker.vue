@@ -1,67 +1,51 @@
 <template>
-    <div>
-        <van-button @click="show1"></van-button>
-    
-        <van-popup v-model="show" :overlay="false">
-            <van-picker
-                show-toolbar
-                :columns="columns"
-                @cancel="onCancel"
-                @confirm="onConfirm"
-            />
-        </van-popup>
-
-        <!-- <van-popup
-            v-model="show2"
-            position="bottom"
-        >
-            <van-picker
-                show-toolbar
-                
-                :columns="columns"
-                @cancel="onCancel"
-                @confirm="onConfirm"
-            />
-        </van-popup> -->
-    </div>
+  <div id="demo-1" class="demo">
+    <div class="demo-title">demo-1：弹窗视图</div>
+    <input class="btn" @click="selectDate('single')">
+    <button class="btn" @click="selectDate('multiple')">多选模式</button>
+    <button class="btn" @click="selectDate('during')">时间段选择模式</button>
+    <p>
+      mode={{mode}}
+    </p>
+    <p>
+      已选日期：{{this.date}}
+    </p>
+    <calendar :show.sync="show" :mode="mode" @change="onChange"/>
+  </div>
 </template>
 
 <script>
-
 export default {
-    data() {
-        return {
-        show: false,
-        columns: ['杭州', '宁波', '温州', '嘉兴', '湖州']
-        }
+  data() {
+    return {
+      show: false,
+      mode: 'during',
+      date: '',
+    };
+  },
+  methods: {
+    selectDate(mode) {
+      this.show = true;
+      this.mode = mode;
+      this.date = '';
     },
-    methods:{
-        show1 () {
-            this.show = true;
-        },
-        onConfirm(value, index) {
-        // alert(`当前值：${value}, 当前索引：${index}`);
-        this.show = false;
-        },
-        onCancel() {
-        alert('取消');
-        }
-    }
-//   data() {
-//     return {
-//       columns: ['杭州', '宁波', '温州', '嘉兴', '湖州']
-//     }
-//   },
-//   methods: {
-//     onConfirm(value, index) {
-//       alert(`当前值：${value}, 当前索引：${index}`);
-//     },
-//     onCancel() {
-//       alert('取消');
-//     }
-//   }
+    onChange(date) {
+      if (this.mode === 'single') {
+        this.date = date.format('YYYY-MM-DD');
+      } else {
+        this.date = JSON.stringify(date.map((item) => item.format('YYYY-MM-DD')));
+      }
+    },
+  },
 };
-
-
-
 </script>
+
+<style scoped  lang="scss">
+  #demo-1{
+    padding: 10px;
+    background: #fff;
+    .btn{
+      margin-right: 20px;
+    }
+  }
+</style>
