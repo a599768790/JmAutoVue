@@ -9,7 +9,9 @@
         <button class="blueBtn">添加子女</button>
     </router-link>
     <button class="blueBtn" v-show="url.nextdisplay" @click="nextstep">下一步</button>
-    <button class="blueBtn" v-show="url.submitdisplay" @click="submit">提交</button>
+    <!-- <button class="blueBtn" v-show="url.submitdisplay" @click="submit">提交</button> -->
+    <button class="blueBtn" v-show="url.submitdisplay" @click="submittoprint">提交</button>
+    
  </div>
 </template>
 

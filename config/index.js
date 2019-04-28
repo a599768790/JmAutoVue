@@ -11,27 +11,28 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
-        target: 'http://188.48.2.6:2666/api',//设置你调用的接口域名和端口号 别忘了加http
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''//这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/api/user/add’即可
-        }
-      },
-      '/pdf': {
-        target: 'http://188.8.32.63:9001/api',//设置你调用的接口域名和端口号 别忘了加http
-        changeOrigin: true,
-        pathRewrite: {
-          '^/pdf': ''//这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/api/user/add’即可
-        }
-      },
-      '/printpdf': {
-        target: 'http://188.8.32.63:9001/api',//设置你调用的接口域名和端口号 别忘了加http
-        changeOrigin: true,
-        pathRewrite: {
-          '^/printpdf': ''//这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/api/user/add’即可
-        }
-      }
+      // '/api': {
+      //   //target: 'http://188.8.32.63:8001/zs/api',
+      //   target: 'http://172.16.63.224:8001/zs/api',//设置你调用的接口域名和端口号 别忘了加http
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/api': ''//这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/api/user/add’即可
+      //   }
+      // },
+      // '/pdf': {
+      //   target: 'http://172.16.63.224:8001/zs/api',//设置你调用的接口域名和端口号 别忘了加http
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/pdf': ''//这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/api/user/add’即可
+      //   }
+      // },
+      // '/printpdf': {
+      //   target: 'http://172.16.63.224:8001/zs/api',//设置你调用的接口域名和端口号 别忘了加http
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/printpdf': ''//这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/api/user/add’即可
+      //   }
+      // }
     },
 
     // Various Dev Server settings
