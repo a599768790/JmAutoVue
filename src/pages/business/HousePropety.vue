@@ -81,10 +81,13 @@ import axios from 'axios'
       //自助机读取身份证
       zzjgetsfz () {
         //打开读取身份证端口
-        alert("读取身份证");
+        alert("打开读取身份证");
         window.external.UniteMethod("ReadIDCardByJs","");
         setTimeout(function(){
+            var str = localStorage.getItem("PrintList") || '[]';
             var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
+            alert("从浏览器读取身份证")
+            alert(str)
             this.housePropety = list.housePropety
             //读取到才隐藏
             if (Object.keys(this.housePropety).length != 0){
@@ -109,7 +112,6 @@ import axios from 'axios'
             list.unshift(this.housePropety);
             //lacalstorge存储字符串
             localStorage.setItem('PrintList',JSON.stringify(list))
-            
 
         },2000);
           
