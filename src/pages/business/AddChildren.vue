@@ -9,7 +9,7 @@
       <mt-field label="出生" placeholder="请输入出生年月" v-model="children.birthDate"></mt-field>
       <mt-field label="民族" placeholder="请输入民族" v-model="children.nation"></mt-field>
       <mt-field class="address" label="地址" placeholder="请输入地址" v-model="children.address"></mt-field>
-      <mt-field label="身份证号" placeholder="请输入身份证号" v-model="children.hkidCardNumber"></mt-field>
+      <mt-field label="身份证号" placeholder="请输入身份证号" v-model="children.certNo"></mt-field>
       <mt-field label="签发机关" placeholder="请输入签发机关" v-model="children.signorganization"></mt-field>
       <mt-field label="有效期至" placeholder="有效期" v-model="children.effectivedate"></mt-field> -->
       <div class="divTxt">
@@ -34,7 +34,7 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input class="inputTxt" placeholder="请输入身份证号" @touchstart.stop="idshow = true" v-model="children.hkidCardNumber">
+        <input class="inputTxt" placeholder="请输入身份证号" @touchstart.stop="idshow = true" v-model="children.certNo">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
@@ -76,6 +76,7 @@
 </template>
 
 <script>
+ import * as index from '@/api/index'
  import headertop from '@/common/header/head'
  import swipe from '@/common/swipe/swipe'
  import returnnext from '@/common/returnnext/returnnext'
@@ -119,7 +120,7 @@
     bottom
    },
    mounted () {
-
+     //index.Test()//引入外部js
     },
    methods:{
           getsfz () {
@@ -148,11 +149,12 @@
                 birthDate:this.children.birthDate,//身份证birthDate
                 nation:this.children.nation,
                 address:this.children.address,
-                hkidCardNumber:this.children.hkidCardNumber,
+                certNo:this.children.certNo,
                 signorganization:this.children.signorganization,
                 effectivedate:this.children.effectivedate,
-                relation:this.children.relation,
-                isHouser:false
+                appellation:this.children.appellation,
+                isHouser:false,
+                certType:"身份证"
               }
               var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
               list.unshift(children);
@@ -161,10 +163,24 @@
           },
           //子组件传来的事件
           nextstep () {
+            var childYear = index.ReturnBirth(this.children.certNo)
+            childYear = childYear.slice(0,4);
+            var nowDate = new Date;
+            var nowYear = nowDate.getFullYear(); //获取年份
+            var childAge = nowYear - childYear;//
+            console.log(nowYear)
+            console.log(childYear);
             if (Object.keys(this.children).length == 0){
                 alert("不能为空");
                 return;
-              }else{
+            }
+            //大于18岁不可以输入
+            if(childAge > 18){
+              alert("请输入未成年子女");
+
+              return false;
+            }
+            else{
                 this.$router.push({
                 path: this.urlList.nexturl,
                 // query: {
@@ -214,7 +230,7 @@
           onInput(value) {
             //alert(value);
             //console.log(value)
-            this.children.hkidCardNumber = value;
+            this.children.certNo = value;
           },
           onDelete() {
             alert('delete');

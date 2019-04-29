@@ -54,8 +54,30 @@
         //提交打印pdf
         submit:function(){
             const self = this;
-            let postData = localStorage.getItem("PrintList")
+            var list = JSON.parse(localStorage.getItem("PrintList"));
+            var listB = JSON.parse(localStorage.getItem("PrintList"));
+            var selfIndexof = list.length-1;
+            var familyMembers = listB.slice(0,selfIndexof);;//去掉最后一个
+            for (let v of familyMembers){
+                if (v.appellation == "配偶"){
+                    v.appellation = 1;
+                }
+                if (v.appellation == "子女"){
+                    v.appellation = 2;
+                }
+            }
+            console.log(familyMembers);
+            let postData = {
+                "applyUser": list[selfIndexof].name,
+                "applyUserCardNO": list[selfIndexof].certNo,
+                "applyCardType": "身份证",
+                "isCardReader": true,
+                "familyMembers": familyMembers
+            }
             console.log(postData)
+            // let list = JSON.parse(localStorage.getItem("PrintList") || '[]')
+            // let postData = {
+            // }
             //let postData = [{"id":1550651856855,"name":"张三","sex":"男","birthDate":"1992-01-01","nation":"汉族","address":"福建省思明区湖滨中路518号","hkidCardNumber":"350201199201011234","signorganization":"厦门市公安局思明分局","effectivedate":"2000-01-01至2020-01-01","relation":"户主","isHouser":true}]
             // let postData = {
             //     "applyUser": "张三",

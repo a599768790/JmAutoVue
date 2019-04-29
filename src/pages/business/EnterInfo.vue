@@ -10,11 +10,11 @@
         </p>
         <p class="pIdCard">
           <span class="spanTxt">身份证</span>
-          <input class="inputTxt" placeholder="请输入身份证" :value="item.hkidCardNumber">
+          <input class="inputTxt" placeholder="请输入身份证" :value="item.certNo">
         </p>
         <p class="pRelation">
           <span class="spanTxt">关系</span>
-          <input class="inputTxt" placeholder="请输入关系" :value="item.relation">
+          <input class="inputTxt" placeholder="请输入关系" :value="item.appellation">
         </p>
         <button class="delBtn" @click="del(index,item.id,item.relation)">删除</button>
       </div>

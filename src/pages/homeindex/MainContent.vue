@@ -23,61 +23,61 @@ import axios from 'axios'
    },
    methods:{
       tohousepropety:function(){
-        const self = this;
-        let postData = {
-        　　companyCode:'tur',
-        　　userName:'123456789123456789',
-        　　password:'123456'
-        }
-        this.showloading = true;
-        axios.post('/api/User/Login',{
-        //axios.post('/api/User/Login',{
-        　　params: {
-        　　　　...postData,
-        　　}
-        })
-        .then(function (response) {
+      //   const self = this;
+      //   let postData = {
+      //   　　companyCode:'tur',
+      //   　　userName:'123456789123456789',
+      //   　　password:'123456'
+      //   }
+      //   this.showloading = true;
+      //   axios.post('/api/User/Login',{
+      //   //axios.post('/api/User/Login',{
+      //   　　params: {
+      //   　　　　...postData,
+      //   　　}
+      //   })
+      //   .then(function (response) {
             
-        　　console.log(1)
-        　　console.log(response);
-            var token  = response.data.body.token
-            localStorage.setItem('token',JSON.stringify(token));
+      //   　　console.log(1)
+      //   　　console.log(response);
+      //       var token  = response.data.body.token
+      //       localStorage.setItem('token',JSON.stringify(token));
 
-            //成功后跳转
-            self.showloading = false;
-            self.$router.push({
-              path: '/Business/housepropety',
-              // query: {
-              //   id: id
-              // }
-            })
-            axios.defaults.headers.common['Authorization'] = JSON.parse(window.localStorage['token'])
-            axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
-            //实例化Vue
-            new Vue({
-              el: '#app',
-              router,
-              components: {
-                App
-              },
-              template: '<App/>'
-            })
+      //       //成功后跳转
+      //       self.showloading = false;
+      //       self.$router.push({
+      //         path: '/Business/housepropety',
+      //         // query: {
+      //         //   id: id
+      //         // }
+      //       })
+      //       axios.defaults.headers.common['Authorization'] = JSON.parse(window.localStorage['token'])
+      //       axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
+      //       //实例化Vue
+      //       new Vue({
+      //         el: '#app',
+      //         router,
+      //         components: {
+      //           App
+      //         },
+      //         template: '<App/>'
+      //       })
             
-        })
-        .catch(function (error) {
-        　　console.log(error);
-        });
+      //   })
+      //   .catch(function (error) {
+      //   　　console.log(error);
+      //   });
 
 
         //本地不走服务
-        // const self = this;
-        // self.showloading = false;
-        // self.$router.push({
-        //   path: '/Business/housepropety',
-        //   // query: {
-        //   //   id: id
-        //   // }
-        // })
+        const self = this;
+        self.showloading = false;
+        self.$router.push({
+          path: '/Business/housepropety',
+          // query: {
+          //   id: id
+          // }
+        })
       },
       f:function(){
         console.log(this)

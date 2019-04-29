@@ -3,9 +3,9 @@
 
 //读取身份证
 function IDCardResultToJs(response){
-    var pesson = eval('(' + response + ')');
+    var person = eval('(' + response + ')');
     var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
-    list.unshift(pesson);
+    list.unshift(person);
     localStorage.setItem('PrintList',JSON.stringify(list))
   }
 

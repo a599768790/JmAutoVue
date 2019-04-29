@@ -25,7 +25,7 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input class="inputTxt" placeholder="请输入身份证号" v-model="spouse.hkidCardNumber">
+        <input class="inputTxt" placeholder="请输入身份证号" v-model="spouse.certNo">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
@@ -97,11 +97,12 @@
                 birthDate:this.spouse.birth,//身份证birthDate
                 nation:this.spouse.nation,
                 address:this.spouse.address,
-                hkidCardNumber:this.spouse.hkidCardNumber,
+                certNo:this.spouse.certNo,
                 signorganization:this.spouse.signorganization,
                 effectivedate:this.spouse.effectivedate,
-                relation:this.spouse.relation,
-                isHouser:false
+                appellation:this.spouse.appellation,
+                isHouser:false,
+                certType:"身份证"
               }
 
               var list = JSON.parse(localStorage.getItem("PrintList") || '[]')

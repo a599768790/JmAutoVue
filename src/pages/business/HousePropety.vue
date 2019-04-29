@@ -25,7 +25,7 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input class="inputTxt" placeholder="请输入身份证号" v-model="housePropety.hkidCardNumber">
+        <input class="inputTxt" placeholder="请输入身份证号" v-model="housePropety.certNo">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
@@ -98,17 +98,18 @@ import axios from 'axios'
             //   born:this.housePropety.birthDate,//身份证birthDate
             //   nation:this.housePropety.nation,
             //   address:this.housePropety.address,
-            //   hkidCardNumber:this.housePropety.hkidCardNumber,
+            //   certNo:this.housePropety.certNo,
             //   grantDept:this.housePropety.grantDept,
             //   userLifeBegin:this.housePropety.userLifeBegin,
             //   userLifeEnd:this.housePropety.userLifeEnd,
-            //   relation:this.housePropety.relation,
+            //   appellation:this.housePropety.appellation,
             //   isHouser:true
             // }
             //var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
             list.unshift(this.housePropety);
             //lacalstorge存储字符串
             localStorage.setItem('PrintList',JSON.stringify(list))
+            
 
         },2000);
           
@@ -147,12 +148,12 @@ import axios from 'axios'
             born:this.housePropety.birthDate,//身份证birthDate
             nation:this.housePropety.nation,
             address:this.housePropety.address,
-            hkidCardNumber:this.housePropety.hkidCardNumber,
+            certNo:this.housePropety.certNo,
             grantDept:this.housePropety.grantDept,
             userLifeBegin:this.housePropety.userLifeBegin,
             userLifeEnd:this.housePropety.userLifeEnd,
-            relation:this.housePropety.relation,
-            isHouser:true
+            appellation:this.housePropety.appellation,
+            isCardReader:true
           }
           var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
           list.unshift(self);
