@@ -10,7 +10,7 @@
     </router-link>
     <button class="blueBtn" v-show="url.nextdisplay" @click="nextstep">下一步</button>
     <!-- <button class="blueBtn" v-show="url.submitdisplay" @click="submit">提交</button> -->
-    <button class="blueBtn" v-show="url.submitdisplay" @click="submittoprint">提交</button>
+    <button class="blueBtn" v-show="url.submitdisplay" @click="submit">提交</button>
     
  </div>
 </template>
@@ -54,23 +54,23 @@
         //提交打印pdf
         submit:function(){
             const self = this;
-            // let postData = localStorage.getItem("PrintList")
-            //console.log(postData)
+            let postData = localStorage.getItem("PrintList")
+            console.log(postData)
             //let postData = [{"id":1550651856855,"name":"张三","sex":"男","birthDate":"1992-01-01","nation":"汉族","address":"福建省思明区湖滨中路518号","hkidCardNumber":"350201199201011234","signorganization":"厦门市公安局思明分局","effectivedate":"2000-01-01至2020-01-01","relation":"户主","isHouser":true}]
-            let postData = {
-                "applyUser": "张三",
-                "applyUserCardNO": "350201199201011234",
-                "applyCardType": "居民身份证",
-                "isCardReader": true,
-                "familyMembers": [
-                ]
-            }
+            // let postData = {
+            //     "applyUser": "张三",
+            //     "applyUserCardNO": "350201199201011234",
+            //     "applyCardType": "居民身份证",
+            //     "isCardReader": true,
+            //     "familyMembers": [
+            //     ]
+            // }
             this.showloading = true;
-            axios.post('/pdf/FamilySearch',postData)
+            axios.post('/api/FamilySearch',postData)
             .then(function (res) {
             　　console.log(res);
                 let pdfpath = res.data.body
-                pdfpath = "/printpdf/" + pdfpath
+                pdfpath = "/" + pdfpath
                 //"/printpdf\CacheFile\2019\2\21\20190201000060_ivkicd_2019022117215944975.pdf"
                 console.log(pdfpath)
                 //成功后跳转

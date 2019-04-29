@@ -1,3 +1,6 @@
+
+
+
 //读取身份证
 function IDCardResultToJs(response){
     var pesson = eval('(' + response + ')');

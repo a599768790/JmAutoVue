@@ -14,9 +14,11 @@
     "js-base64": "^2.5.1",
     "mint-ui": "^2.2.13",
     "muse-ui": "^3.0.2",
+    "node-sass": "^4.12.0",
     "pdfjs-dist": "^2.0.943",
     "vant": "^1.4.10",
     "vue": "^2.5.2",
+    "vue-mobile-calendar": "^3.0.6",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

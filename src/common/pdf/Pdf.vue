@@ -1,11 +1,14 @@
 <template>
   <div class="pdf">
     <canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>
-    <div>
-      <mt-button size="large" @click="MSPrintByJS">testprint</mt-button>
+
+    <div class="printDiv">
+      <button class="pdfBtn">打印PDF</button>
+      <!-- <mt-button size="large" @click="MSPrintByJS">testprint</mt-button> -->
     </div>
-    <div>
-      <mt-button size="large" @click="returnhome">返回首页</mt-button>
+    <div class="returnDiv">
+      <button class="pdfBtn">返回</button>
+      <!-- <mt-button size="large" @click="returnhome">返回首页</mt-button> -->
     </div>
   </div>
 </template>
@@ -116,5 +119,32 @@ canvas {
 }
 .pdf{
     margin-top:3rem;
+    .printDiv{
+      text-align: center;
+      .printBtn{
+
+      }
+    }
+    .returnDiv{
+      text-align: center;
+      .returnBtn{
+
+      }
+    }
+    .pdfBtn{
+      width:6rem;
+      height: 0.8rem;
+      text-align: center;
+      border-radius: 0.4rem;
+      margin-top:0.3rem;
+      font-size:0.4rem;
+      border:none;
+      color:#fff;
+      background: #29aae3;
+    }
+    
+    
 }
+
+
 </style>

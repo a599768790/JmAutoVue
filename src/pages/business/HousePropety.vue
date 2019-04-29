@@ -74,12 +74,48 @@ import axios from 'axios'
    methods:{
       //子组件传递过来的事件
       getsfz () {
-        //alert("111")
         //扫描成功get数据，先把本人data保存到浏览器localstage
         axios.get('/static/index.json').then(this.getInfoSucc)
-        //this.urlList.getsfzdisplay = false
 
       },
+      //自助机读取身份证
+      zzjgetsfz () {
+        //打开读取身份证端口
+        alert("读取身份证");
+        window.external.UniteMethod("ReadIDCardByJs","");
+        setTimeout(function(){
+            var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
+            this.housePropety = list.housePropety
+            //读取到才隐藏
+            if (Object.keys(this.housePropety).length != 0){
+              this.urlList.getsfzdisplay = false
+            }
+            //保存到localstage
+            // var self = {
+            //   id:Date.now(), 
+            //   name:this.housePropety.name, 
+            //   sex:this.housePropety.sex,
+            //   born:this.housePropety.birthDate,//身份证birthDate
+            //   nation:this.housePropety.nation,
+            //   address:this.housePropety.address,
+            //   hkidCardNumber:this.housePropety.hkidCardNumber,
+            //   grantDept:this.housePropety.grantDept,
+            //   userLifeBegin:this.housePropety.userLifeBegin,
+            //   userLifeEnd:this.housePropety.userLifeEnd,
+            //   relation:this.housePropety.relation,
+            //   isHouser:true
+            // }
+            //var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
+            list.unshift(this.housePropety);
+            //lacalstorge存储字符串
+            localStorage.setItem('PrintList',JSON.stringify(list))
+
+        },2000);
+          
+
+      },
+
+
       //子组件传过来下一步
       nextstep () {
         if (Object.keys(this.housePropety).length == 0){
@@ -122,19 +158,7 @@ import axios from 'axios'
           list.unshift(self);
           localStorage.setItem('PrintList',JSON.stringify(list))
         }
-      },
-      //自助机读取身份证
-      ReadIDCardByJs:function(){
-          setTimeout(function () { 
-            window.external.UniteMethod("ReadIDCardByJs","");
-          },400);
-      },
-      
-
-
-          
-
-
+      }
     }
  }
 </script>
