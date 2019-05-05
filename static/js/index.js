@@ -11,10 +11,15 @@
 function IDCardResultToJs(response){
     alert("开始读取身份证");
     alert(response);
-    var person = eval('(' + response + ')');//字符串转对象
-    var list = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
-    list.unshift(person);//加入数组
-    localStorage.setItem('PrintList',JSON.stringify(list))
+    var responseObj = eval('(' + response + ')');//字符串转对象
+    if(responseObj.status == 1){
+      alert("读取成功...");
+    }
+    var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
+    var personObj = responseObj.idCardMsg;
+    ListObj.unshift(personObj);//加入数组
+    alert(JSON.stringify(ListObj))
+    localStorage.setItem('PrintList',JSON.stringify(ListObj))
 }
 
   //打印

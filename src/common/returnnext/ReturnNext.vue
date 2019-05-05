@@ -1,6 +1,6 @@
 <template>
  <div class="returnnext-div">
-    <button class="blueBtn" v-show="url.getsfzdisplay == null ? 'true' : url.getsfzdisplay" @click="getsfz" >读取身份证</button>
+    <button class="blueBtn getsfzBtn" v-show="url.getsfzdisplay == null ? 'true' : url.getsfzdisplay" @click="getsfz" >读取身份证</button>
     <button class="blueBtn" :class="active" @click="returnhome">返回</button>
     <router-link :to=url.addspouse v-show="url.spousedisplay">
         <button class="blueBtn">添加配偶</button>

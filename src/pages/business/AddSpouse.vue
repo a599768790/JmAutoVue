@@ -1,44 +1,44 @@
 <template>
  <div>
-    <headertop :headerText="actualText"></headertop>
+    <!-- <headertop :headerText="actualText"></headertop> -->
     <swipe></swipe>
     <div class="form">
       <div class="divTxt">
         <span class="spanTxt">姓名</span>
-        <input class="inputTxt" placeholder="请输入姓名" v-model="spouse.name">
+        <input class="inputTxt" placeholder="请输入姓名" name="name">
       </div>
       <div class="divTxt">
         <span class="spanTxt">性别</span>
-        <input class="inputTxt" placeholder="请输入性别" v-model="spouse.sex">
+        <input class="inputTxt" placeholder="请输入性别" name="sex">
       </div>
       <div class="divTxt">
         <span class="spanTxt">出生</span>
-        <input class="inputTxt" placeholder="请输入出生年月" v-model="spouse.birthDate">
+        <input class="inputTxt" placeholder="请输入出生年月" name="born">
       </div>
       <div class="divTxt">
         <span class="spanTxt">民族</span>
-        <input class="inputTxt" placeholder="请输入民族" v-model="spouse.nation">
+        <input class="inputTxt" placeholder="请输入民族" name="nation">
       </div>
       <div class="divTxt">
         <span class="spanTxt">地址</span>
-        <input class="inputTxt" placeholder="请输入地址" v-model="spouse.address">
+        <input class="inputTxt" placeholder="请输入地址" name="address">
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input class="inputTxt" placeholder="请输入身份证号" v-model="spouse.certNo">
+        <input class="inputTxt" placeholder="请输入身份证号" name="idCardNo">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
-        <input class="inputTxt" placeholder="请输入签发机关" v-model="spouse.effectivedate">
+        <input class="inputTxt" placeholder="请输入签发机关" name="grantDept">
       </div>
     </div>
-    <returnnext :url="urlList" @actualgetsfz="getsfz" @actualnextstep='nextstep'></returnnext>
+    <returnnext :url="urlList" @actualgetsfz="zzjgetsfz" @actualnextstep='nextstep'></returnnext>
     <bottom></bottom>
  </div>
 </template>
 
 <script>
- import headertop from '@/common/header/head'
+ //import headertop from '@/common/header/head'
  import swipe from '@/common/swipe/swipe'
  import returnnext from '@/common/returnnext/returnnext'
  import bottom from '@/common/footer/footer'
@@ -57,11 +57,11 @@
         nextdisplay:true,
         getsfzdisplay:true
       },
-      actualText:"请刷取配偶身份证"
+      //actualText:"请刷取配偶身份证"
      }
    },
    components: {
-    headertop,
+    //headertop,
     swipe,
     returnnext,
     bottom
@@ -125,7 +125,27 @@
                 // }
                 })
               }
-          }
+          },
+          //点击自助机读取身份证
+          zzjgetsfz () {
+              //打开读取身份证端口
+              alert("准备打开读取端口");
+              window.external.UniteMethod("ReadIDCardByJs","");
+              setTimeout(function(){
+                  var str = localStorage.getItem("PrintList") || '[]';
+                  var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
+                  alert("读取缓存");
+                  alert(JSON.stringify(list[0]));
+                  this.housePropety = list[0]
+                  common.loadData(list[0]);
+                  //读取到才隐藏
+                  if (Object.keys(this.housePropety).length != 0){
+                    alert("隐藏读取按钮")
+                    //this.urlList.getsfzdisplay = false;
+                    $(".getsfzBtn").hide();
+                  }
+              },2000);
+          },
     }
  }
 </script>

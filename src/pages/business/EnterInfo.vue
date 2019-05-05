@@ -1,7 +1,7 @@
 <template>
  <div class="content">
-    <!-- <mt-header fixed title="您录入的信息" class="header" ref="header"></mt-header> -->
-    <headertop :headerText="actualText"></headertop>
+   
+    <!-- <headertop :headerText="actualText"></headertop> -->
     <div class="form">
       <div class="divTxt" v-for="(item,index) in list" :key='item.id'>
         <p class="pName">
@@ -10,11 +10,11 @@
         </p>
         <p class="pIdCard">
           <span class="spanTxt">身份证</span>
-          <input class="inputTxt" placeholder="请输入身份证" :value="item.certNo">
+          <input class="inputTxt" placeholder="请输入身份证" :value="item.idcardNo">
         </p>
         <p class="pRelation">
-          <span class="spanTxt">关系</span>
-          <input class="inputTxt" placeholder="请输入关系" :value="item.appellation">
+          <span class="spanTxt">性别</span>
+          <input class="inputTxt" placeholder="请输入关系" :value="item.sex">
         </p>
         <button class="delBtn" @click="del(index,item.id,item.relation)">删除</button>
       </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
- import headertop from '@/common/header/head'
+ //import headertop from '@/common/header/head'
  import swipe from '@/common/swipe/swipe'
  import returnnext from '@/common/returnnext/returnnext'
  import bottom from '@/common/footer/footer'
@@ -45,12 +45,12 @@
         submitdisplay:true,
         getsfzdisplay:false,
       },
-      actualText:'您录入的信息',
+      //actualText:'您录入的信息',
       actualActive:"active"//动态绑定样式
      }
    },
    components: {
-    headertop,
+    //headertop,
     returnnext,
     bottom
    },

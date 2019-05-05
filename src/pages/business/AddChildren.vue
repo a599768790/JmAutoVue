@@ -1,44 +1,35 @@
 <template>
  <div>
-    <!-- <mt-header fixed title="请刷取子女身份证" class="header"></mt-header> -->
-    <headertop :headerText="actualText"></headertop>
+    <!-- <headertop :headerText="actualText"></headertop> -->
     <swipe></swipe>
     <div class="form">
-      <!-- <mt-field label="姓名" placeholder="请输入姓名" v-model="children.name"></mt-field>
-      <mt-field label="性别" placeholder="请输入性别" v-model="children.sex"></mt-field>
-      <mt-field label="出生" placeholder="请输入出生年月" v-model="children.birthDate"></mt-field>
-      <mt-field label="民族" placeholder="请输入民族" v-model="children.nation"></mt-field>
-      <mt-field class="address" label="地址" placeholder="请输入地址" v-model="children.address"></mt-field>
-      <mt-field label="身份证号" placeholder="请输入身份证号" v-model="children.certNo"></mt-field>
-      <mt-field label="签发机关" placeholder="请输入签发机关" v-model="children.signorganization"></mt-field>
-      <mt-field label="有效期至" placeholder="有效期" v-model="children.effectivedate"></mt-field> -->
       <div class="divTxt">
         <span class="spanTxt">姓名</span>
-        <input class="inputTxt" placeholder="请输入姓名" v-model="children.name">
+        <input class="inputTxt" placeholder="请输入姓名" name="name">
       </div>
       <div class="divTxt">
         <span class="spanTxt">性别</span>
-        <input class="inputTxt" placeholder="请输入性别" @click="chooseSex" v-model="children.sex">
+        <input class="inputTxt" placeholder="请输入性别" @click="chooseSex" name="sex">
       </div>
       <div class="divTxt">
         <span class="spanTxt">出生</span>
-        <input class="inputTxt" placeholder="请输入出生年月" @click="chooseBirth('single')" v-model="children.birthDate">
+        <input class="inputTxt" placeholder="请输入出生年月" @click="chooseBirth('single')" name="born">
       </div>
       <div class="divTxt">
         <span class="spanTxt">民族</span>
-        <input class="inputTxt" placeholder="请输入民族" @click="chooseNation" v-model="children.nation">
+        <input class="inputTxt" placeholder="请输入民族" @click="chooseNation" name="nation">
       </div>
       <div class="divTxt">
         <span class="spanTxt">地址</span>
-        <input class="inputTxt" placeholder="请输入地址" v-model="children.address">
+        <input class="inputTxt" placeholder="请输入地址" name="address">
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input class="inputTxt" placeholder="请输入身份证号" @touchstart.stop="idshow = true" v-model="children.certNo">
+        <input class="inputTxt" placeholder="请输入身份证号" @touchstart.stop="idshow = true" name="idCardNo">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
-        <input class="inputTxt" placeholder="请输入签发机关" v-model="children.effectivedate">
+        <input class="inputTxt" placeholder="请输入签发机关" name="grantDept">
       </div>
     </div>
     <returnnext :url="urlList" @actualgetsfz='getsfz' @actualnextstep='nextstep'></returnnext>
@@ -77,7 +68,7 @@
 
 <script>
  import * as index from '@/api/index'
- import headertop from '@/common/header/head'
+ //import headertop from '@/common/header/head'
  import swipe from '@/common/swipe/swipe'
  import returnnext from '@/common/returnnext/returnnext'
  import bottom from '@/common/footer/footer'
@@ -97,7 +88,7 @@
         nextdisplay:true,
         getsfzdisplay:true
       },
-      actualText:"请刷取子女身份证",
+      //actualText:"请刷取子女身份证",
       sexDisplay: false,
       birthDisplay:false,
       nationDisplay:false,
@@ -114,7 +105,7 @@
      }
    },
    components: {
-    headertop,
+    //headertop,
     swipe,
     returnnext,
     bottom
