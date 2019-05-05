@@ -10,7 +10,7 @@
 
 <script>
 import loading from '@/common/loading/loading'
-import * as test from '@/api/index'
+// import * as test from '@/api/index'
 import axios from 'axios'
  export default {
    data () {

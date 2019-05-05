@@ -107,6 +107,8 @@
 
               var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
               list.unshift(spouse);
+              console.log(list)
+              alert(JSON.stringify(list[0]));
               localStorage.setItem('PrintList',JSON.stringify(list))
             }
           },

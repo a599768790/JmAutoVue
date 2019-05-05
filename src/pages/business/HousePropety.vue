@@ -5,45 +5,49 @@
     <div class="form">
       <div class="divTxt">
         <span class="spanTxt">姓名</span>
-        <input class="inputTxt" placeholder="请输入姓名" v-model="housePropety.name">
+        <input class="inputTxt" placeholder="请输入姓名" :value="housePropety.name">
       </div>
       <div class="divTxt">
         <span class="spanTxt">性别</span>
-        <input class="inputTxt" placeholder="请输入性别" v-model="housePropety.sex">
+        <input class="inputTxt" placeholder="请输入性别" :value="housePropety.sex">
       </div>
       <div class="divTxt">
         <span class="spanTxt">出生</span>
-        <input class="inputTxt" placeholder="请输入出生年月" v-model="housePropety.birthDate">
+        <input class="inputTxt" placeholder="请输入出生年月" :value="housePropety.birthDate">
       </div>
       <div class="divTxt">
         <span class="spanTxt">民族</span>
-        <input class="inputTxt" placeholder="请输入民族" v-model="housePropety.nation">
+        <input class="inputTxt" placeholder="请输入民族" :value="housePropety.nation">
       </div>
       <div class="divTxt">
         <span class="spanTxt">地址</span>
-        <input class="inputTxt" placeholder="请输入地址" v-model="housePropety.address">
+        <input class="inputTxt" placeholder="请输入地址" :value="housePropety.address">
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input class="inputTxt" placeholder="请输入身份证号" v-model="housePropety.certNo">
+        <input class="inputTxt" placeholder="请输入身份证号" :value="housePropety.certNo">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
-        <input class="inputTxt" placeholder="请输入签发机关" v-model="housePropety.effectivedate">
+        <input class="inputTxt" placeholder="请输入签发机关" :value="housePropety.effectivedate">
       </div>
     </div>
-    <returnnext :url="urlList" @actualgetsfz="getsfz" @actualnextstep="nextstep"></returnnext>
+    <returnnext :url="urlList" @actualgetsfz="zzjgetsfz" @actualnextstep="nextstep"></returnnext>
     <bottom></bottom>
     
  </div>
 </template>
 
 <script>
+// import {aa} from "@/api/base.js"
+// import * as Read from "@/api/base.js"
 import headertop from '@/common/header/head'
 import swipe from '@/common/swipe/swipe'
 import returnnext from '@/common/returnnext/returnnext'
 import bottom from '@/common/footer/footer'
 import axios from 'axios'
+
+
  export default {
    data () {
      return {
@@ -69,7 +73,7 @@ import axios from 'axios'
     bottom
    },
    mounted () {
-
+    //  aa();
     },
    methods:{
       //子组件传递过来的事件
@@ -78,42 +82,45 @@ import axios from 'axios'
         axios.get('/static/index.json').then(this.getInfoSucc)
 
       },
-      //自助机读取身份证
+      //点击自助机读取身份证
       zzjgetsfz () {
         //打开读取身份证端口
-        alert("打开读取身份证");
+        alert("准备打开读取端口");
         window.external.UniteMethod("ReadIDCardByJs","");
-        setTimeout(function(){
-            var str = localStorage.getItem("PrintList") || '[]';
-            var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
-            alert("从浏览器读取身份证")
-            alert(str)
-            this.housePropety = list.housePropety
-            //读取到才隐藏
-            if (Object.keys(this.housePropety).length != 0){
-              this.urlList.getsfzdisplay = false
-            }
-            //保存到localstage
-            // var self = {
-            //   id:Date.now(), 
-            //   name:this.housePropety.name, 
-            //   sex:this.housePropety.sex,
-            //   born:this.housePropety.birthDate,//身份证birthDate
-            //   nation:this.housePropety.nation,
-            //   address:this.housePropety.address,
-            //   certNo:this.housePropety.certNo,
-            //   grantDept:this.housePropety.grantDept,
-            //   userLifeBegin:this.housePropety.userLifeBegin,
-            //   userLifeEnd:this.housePropety.userLifeEnd,
-            //   appellation:this.housePropety.appellation,
-            //   isHouser:true
-            // }
-            //var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
-            list.unshift(this.housePropety);
-            //lacalstorge存储字符串
-            localStorage.setItem('PrintList',JSON.stringify(list))
+            setTimeout(function(){
+                var str = localStorage.getItem("PrintList") || '[]';
+                var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
+                alert("读取缓存");
+                alert(JSON.stringify(list[0]));
+                this.housePropety = list[0]
+                //读取到才隐藏
+                if (Object.keys(this.housePropety).length != 0){
+                  this.urlList.getsfzdisplay = false
+                }
+                //保存到localstage
+                // var self = {
+                //   id:Date.now(), 
+                //   name:this.housePropety.name, 
+                //   sex:this.housePropety.sex,
+                //   born:this.housePropety.birthDate,//身份证birthDate
+                //   nation:this.housePropety.nation,
+                //   address:this.housePropety.address,
+                //   certNo:this.housePropety.certNo,
+                //   grantDept:this.housePropety.grantDept,
+                //   userLifeBegin:this.housePropety.userLifeBegin,
+                //   userLifeEnd:this.housePropety.userLifeEnd,
+                //   appellation:this.housePropety.appellation,
+                //   isHouser:true
+                // }
+                //var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
+                //list.unshift(this.housePropety);
+                //lacalstorge存储字符串
+                //localStorage.setItem('PrintList',JSON.stringify(list))
 
-        },2000);
+            },2000);
+            
+
+     
           
 
       },
@@ -159,11 +166,16 @@ import axios from 'axios'
           }
           var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
           list.unshift(self);
+          console.log(list)
+          alert(JSON.stringify(list[0]));
+          //alert(JSON.stringify(list.housePropety));
           localStorage.setItem('PrintList',JSON.stringify(list))
         }
       }
     }
  }
+
+
 </script>
 
 <style lang="scss" scoped>
