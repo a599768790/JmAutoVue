@@ -9,30 +9,30 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">性别</span>
-        <input class="inputTxt" placeholder="请输入性别" name="sex">
+        <input class="inputTxt" placeholder="请输入性别" name="sex" v-model="spouse.sex">
       </div>
       <div class="divTxt">
         <span class="spanTxt">出生</span>
-        <input class="inputTxt" placeholder="请输入出生年月" name="born">
+        <input class="inputTxt" placeholder="请输入出生年月" name="born" v-model="spouse.born">
       </div>
       <div class="divTxt">
         <span class="spanTxt">民族</span>
-        <input class="inputTxt" placeholder="请输入民族" name="nation">
+        <input class="inputTxt" placeholder="请输入民族" name="nation" v-model="spouse.nation">
       </div>
       <div class="divTxt">
         <span class="spanTxt">地址</span>
-        <input class="inputTxt" placeholder="请输入地址" name="address">
+        <input class="inputTxt" placeholder="请输入地址" name="address" v-model="spouse.address">
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input class="inputTxt" placeholder="请输入身份证号" name="idCardNo">
+        <input class="inputTxt" placeholder="请输入身份证号" name="idCardNo" v-model="spouse.idCardNo">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
-        <input class="inputTxt" placeholder="请输入签发机关" name="grantDept">
+        <input class="inputTxt" placeholder="请输入签发机关" name="grantDept" v-model="spouse.grantDept">
       </div>
     </div>
-    <returnnext :url="urlList" @actualgetsfz="zzjgetsfz" @actualnextstep='nextstep'></returnnext>
+    <returnnext :url="urlList" @actualgetsfz="getsfz" @actualnextstep='nextstep'></returnnext>
     <bottom></bottom>
  </div>
 </template>
@@ -72,45 +72,13 @@
    methods:{
           //子组件传过来的
           getsfz () {
-            //扫描成功get数据，先把本人data保存到浏览器localstage
-            axios.get('/static/index.json').then(this.getHomeInfoSucc)
-            // if(Object.keys(this.spouse).length != 0){
-            //   this.urlList.getsfzdisplay = false
-            // }
-            this.urlList.getsfzdisplay = false
-          },
-          getHomeInfoSucc (res) {
-            res = res.data
-            if (res.ret && res.data){
-              const data = res.data
-              this.spouse = data.housePropety.relationperson[0]
-              //读取到消息才隐藏
-              if (Object.keys(this.spouse).length != 0){
-                this.urlList.getsfzdisplay = false
-              }
-            
-              //保存到localstage
-              var spouse = {
-                id:Date.now(), 
-                name:this.spouse.name, 
-                sex:this.spouse.sex,
-                birthDate:this.spouse.birth,//身份证birthDate
-                nation:this.spouse.nation,
-                address:this.spouse.address,
-                certNo:this.spouse.certNo,
-                signorganization:this.spouse.signorganization,
-                effectivedate:this.spouse.effectivedate,
-                appellation:this.spouse.appellation,
-                isHouser:false,
-                certType:"身份证"
-              }
-
-              var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
-              list.unshift(spouse);
-              console.log(list)
-              alert(JSON.stringify(list[0]));
-              localStorage.setItem('PrintList',JSON.stringify(list))
-            }
+            var jsonstr = '{"name": "郑瑶珊","sex": "女","nation": "汉族","born": "19921126","address": "福建省福州市罗源县青禾家园6座404","idCardNo": "350123199211262424", "grantdept": "福州市公安分局罗源分局"}'
+            var obj = JSON.parse(jsonstr)
+            this.spouse = obj
+            var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
+            ListObj.unshift(obj);//加入数组
+            alert(JSON.stringify(ListObj))
+            localStorage.setItem('PrintList',JSON.stringify(ListObj))
           },
           //子组件传来的事件
           nextstep () {

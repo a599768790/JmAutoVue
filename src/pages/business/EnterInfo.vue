@@ -10,7 +10,7 @@
         </p>
         <p class="pIdCard">
           <span class="spanTxt">身份证</span>
-          <input class="inputTxt" placeholder="请输入身份证" :value="item.idcardNo">
+          <input class="inputTxt" placeholder="请输入身份证" :value="item.idCardNo">
         </p>
         <p class="pRelation">
           <span class="spanTxt">性别</span>

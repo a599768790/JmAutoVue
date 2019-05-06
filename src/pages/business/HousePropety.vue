@@ -29,12 +29,11 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
-        <input class="inputTxt" placeholder="请输入签发机关" name="grantDept">
+        <input class="inputTxt" placeholder="请输入签发机关" name="grantDept" v-model="housePropety.grantDept">
       </div>
     </div>
-    <returnnext :url="urlList" @actualgetsfz="zzjgetsfz" @actualnextstep="nextstep"></returnnext>
+    <returnnext :url="urlList" @actualgetsfz="getsfz" @actualnextstep="nextstep"></returnnext>
     <bottom></bottom>
-    
  </div>
 </template>
 
@@ -76,19 +75,18 @@ import axios from 'axios'
    mounted () {
     //  aa();
     // $(".getsfzBtn").hide();
-    
     },
    methods:{
       //子组件传递过来的事件
       getsfz () {
         //扫描成功get数据，先把本人data保存到浏览器localstage
-        // axios.get('/static/index.json').then(this.getInfoSucc)
-        var jsonstr = '{"name": "BeJson","sex": "男","nation": "汉族","born": "19920926","address": "福建省厦门市同安区祥湖里20号202室","idCardNo": "350212199209264515", "grantdept": "厦门市公安分局同安分局"}'
+        var jsonstr = '{"name": "李毅辉","sex": "男","nation": "汉族","born": "19920926","address": "福建省厦门市同安区祥湖里20号202室","idCardNo": "350212199209264515", "grantdept": "厦门市公安分局同安分局"}'
         var obj = JSON.parse(jsonstr)
-        
         this.housePropety = obj
-        var list = [];
-        list.unshift(obj);
+        var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
+        ListObj.unshift(obj);//加入数组
+        alert(JSON.stringify(ListObj))
+        localStorage.setItem('PrintList',JSON.stringify(ListObj))
         //common.loadData(jsonstr)
         //读取到才隐藏
         if (Object.keys(this.housePropety).length != 0){
