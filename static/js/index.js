@@ -1,12 +1,4 @@
 
-// function aa(){
-//   alert("111")
-// }
-
-// function aa(){
-//   alert("222")
-// }
-
 //读取身份证
 function IDCardResultToJs(response){
     alert("开始读取身份证");
@@ -18,18 +10,15 @@ function IDCardResultToJs(response){
     var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
     var personObj = responseObj.idCardMsg;
     ListObj.unshift(personObj);//加入数组
+
     alert(JSON.stringify(ListObj))
     localStorage.setItem('PrintList',JSON.stringify(ListObj))
 }
 
-  //打印
-  // function IDCardResultToJs(response){
-  //   // var pesson = eval('(' + response + ')');
-  //   // var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
-  //   // list.unshift(pesson);
-  //   // localStorage.setItem('PrintList',JSON.stringify(list))
-  //   var request = {
+//键盘接口
+function showKB(tagId){
 
-  //   }
-  //   window.external.UniteMethod("OfficePrintByJs",request)
-  // }
+  var request="{'tagId':'numkeyboard','skin':'blue'}";
+  window.external.UniteMethod("ShowKeyBordByJs",request );
+}
+

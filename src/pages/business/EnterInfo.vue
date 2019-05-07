@@ -100,9 +100,6 @@
 </script>
 
 <style lang="scss" scoped>
-  // .mint-header-title{
-  //   overflow:initial;
-  // }
   .form{
     //margin-top:1.1rem;
     padding:0.2rem 0.6rem 0 0.6rem;
@@ -166,10 +163,4 @@
         background:none;
     }
   }
-  // .mint-cell{
-  //   min-height:0.68rem;
-  // }
-  // .enterPerson{
-  //   border:1px dashed #ccc;
-  // }
 </style>

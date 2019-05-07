@@ -2,34 +2,37 @@
  <div>
     <!-- <headertop :headerText="actualText"></headertop> -->
     <swipe></swipe>
-    <div class="form">
+    <div class="form" id="childrenForm">
+      <!-- <div class="divTxt">
+        <input id="numkeyboard1" class="numkeyboard" placeholder="请输入姓名222" onclick="showKB('numkeyboard1')" name="name" v-model="children.name">
+      </div> -->
       <div class="divTxt">
         <span class="spanTxt">姓名</span>
-        <input class="inputTxt" placeholder="请输入姓名" name="name">
+        <input id="numkeyboard1" class="numkeyboard inputTxt" value="子女111" placeholder="请输入姓名" @click="showKB('numkeyboard1')" name="name">
       </div>
       <div class="divTxt">
         <span class="spanTxt">性别</span>
-        <input class="inputTxt" placeholder="请输入性别" @click="chooseSex" name="sex">
+        <input class="inputTxt" placeholder="请输入性别" @click="chooseSex" value="性别男" name="sex">
       </div>
       <div class="divTxt">
         <span class="spanTxt">出生</span>
-        <input class="inputTxt" placeholder="请输入出生年月" @click="chooseBirth('single')" name="born">
+        <input id="numkeyboard2" class="numkeyboard inputTxt" placeholder="请输入出生年月" @click="showKB('numkeyboard2')" name="born" v-model="children.born">
       </div>
       <div class="divTxt">
         <span class="spanTxt">民族</span>
-        <input class="inputTxt" placeholder="请输入民族" @click="chooseNation" name="nation">
+        <input class="inputTxt" placeholder="请输入民族" @click="chooseNation" name="nation" v-model="children.nation">
       </div>
       <div class="divTxt">
         <span class="spanTxt">地址</span>
-        <input class="inputTxt" placeholder="请输入地址" name="address">
+        <input id="numkeyboard3" class="numkeyboard inputTxt" placeholder="请输入地址" @click="showKB('numkeyboard3')" name="address" v-model="children.address">
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input class="inputTxt" placeholder="请输入身份证号" @touchstart.stop="idshow = true" name="idCardNo">
+        <input id="numkeyboard4" class="inputTxt" value="350212201010104515" placeholder="请输入身份证号" @touchstart.stop="idshow = true" @click="showKB('numkeyboard4')" name="idCardNo" v-model="children.idCardNo">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
-        <input class="inputTxt" placeholder="请输入签发机关" name="grantDept">
+        <input id="numkeyboard5" class="inputTxt" placeholder="请输入签发机关" name="grantDept" @click="showKB('numkeyboard5')"  v-model="children.grantDept">
       </div>
     </div>
     <returnnext :url="urlList" @actualgetsfz='getsfz' @actualnextstep='nextstep'></returnnext>
@@ -68,6 +71,8 @@
 
 <script>
  import * as index from '@/api/index'
+ import * as common from "@/api/base.js"
+ import {serializeObject} from "@/api/base.js"
  //import headertop from '@/common/header/head'
  import swipe from '@/common/swipe/swipe'
  import returnnext from '@/common/returnnext/returnnext'
@@ -86,7 +91,7 @@
         spousedisplay:false,
         childrendisplay:false,
         nextdisplay:true,
-        getsfzdisplay:true
+        getsfzdisplay:false
       },
       //actualText:"请刷取子女身份证",
       sexDisplay: false,
@@ -115,46 +120,27 @@
     },
    methods:{
           getsfz () {
-            //扫描成功get数据，先把本人data保存到浏览器localstage
-            axios.get('/static/index.json').then(this.getHomeInfoSucc)
-            // if(Object.keys(this.housePropety).length != 0){
-            //   this.urlList.children = false
-            // }
-            this.urlList.getsfzdisplay = false
-          },
-          getHomeInfoSucc (res) {
-            res = res.data
-            if (res.ret && res.data){
-              const data = res.data
-              this.children = data.housePropety.relationperson[1]
-              //读取到才隐藏
-              if (Object.keys(this.children).length != 0){
-                this.urlList.getsfzdisplay = false
-              }
-              
-              //保存到localstage
-              var children = {
-                id:Date.now(), 
-                name:this.children.name, 
-                sex:this.children.sex,
-                birthDate:this.children.birthDate,//身份证birthDate
-                nation:this.children.nation,
-                address:this.children.address,
-                certNo:this.children.certNo,
-                signorganization:this.children.signorganization,
-                effectivedate:this.children.effectivedate,
-                appellation:this.children.appellation,
-                isHouser:false,
-                certType:"身份证"
-              }
-              var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
-              list.unshift(children);
-              localStorage.setItem('PrintList',JSON.stringify(list))
-            }
+            var jsonstr = '{"name": "郑小小","sex": "女","nation": "汉族","born": "20191103","address": "福建省福州市罗源县青禾家园6座406","idCardNo": "350212201911032424", "grantDept": "福州市公安分局罗源分局","relation":"未成年子女"}'
+            var obj = JSON.parse(jsonstr)
+            this.children = obj
+            var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
+            ListObj.unshift(obj);//加入数组
+            alert(JSON.stringify(ListObj))
+            localStorage.setItem('PrintList',JSON.stringify(ListObj))
           },
           //子组件传来的事件
           nextstep () {
-            var childYear = index.ReturnBirth(this.children.certNo)
+            // var obj = $('#childrenForm').serializeObject()
+            // console.log(obj);
+
+            // this.children = obj
+            // var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
+            // ListObj.unshift(obj);//加入数组
+            // alert(JSON.stringify(ListObj))
+            // localStorage.setItem('PrintList',JSON.stringify(ListObj))
+
+
+            var childYear = index.ReturnBirth(this.children.idCardNo)
             childYear = childYear.slice(0,4);
             var nowDate = new Date;
             var nowYear = nowDate.getFullYear(); //获取年份
@@ -168,7 +154,6 @@
             //大于18岁不可以输入
             if(childAge > 18){
               alert("请输入未成年子女");
-
               return false;
             }
             else{
@@ -225,7 +210,7 @@
           },
           onDelete() {
             alert('delete');
-          }
+          },
 
     }
  }

@@ -36,15 +36,23 @@ export function loadData(jsonStr){
 	}
 }
 
-  //读取身份证
-  export function IDCardResultToJs(response){
-    alert("开始读取身份证");
-    alert(response);
-    var person = eval('(' + response + ')');
-    var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
-    list.unshift(person);
-    localStorage.setItem('PrintList',JSON.stringify(list))
-  }
+// 转为json数据格式
+export function serializeObject () {
+	var o = {};
+	var a = this.serializeArray();
+	$.each(a, function() {
+			if (o[this.name]) {
+					if (!o[this.name].push) {
+							o[this.name] = [ o[this.name] ];
+					}
+					o[this.name].push(this.value || '');
+			} else {
+					o[this.name] = this.value || '';
+			}
+	});
+	return o;
+}
+
 
   //打印
   // export function IDCardResultToJs(response){

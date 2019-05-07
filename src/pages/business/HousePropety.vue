@@ -80,14 +80,16 @@ import axios from 'axios'
       //子组件传递过来的事件
       getsfz () {
         //扫描成功get数据，先把本人data保存到浏览器localstage
-        var jsonstr = '{"name": "李毅辉","sex": "男","nation": "汉族","born": "19920926","address": "福建省厦门市同安区祥湖里20号202室","idCardNo": "350212199209264515", "grantdept": "厦门市公安分局同安分局"}'
-        var obj = JSON.parse(jsonstr)
+        var jsonstr = '{"name": "李毅辉","sex": "男","nation": "汉族","born": "19920926","address": "福建省厦门市同安区祥湖里20号202室","idCardNo": "350212199209264515", "grantDept": "厦门市公安分局同安分局","relation":"户主"}'
+        var obj = JSON.parse(jsonstr)//自助机获取解析
         this.housePropety = obj
         var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
         ListObj.unshift(obj);//加入数组
         alert(JSON.stringify(ListObj))
+        common.loadData(ListObj[0]);//模拟自助机绑定
+
         localStorage.setItem('PrintList',JSON.stringify(ListObj))
-        //common.loadData(jsonstr)
+        common.loadData(jsonstr)
         //读取到才隐藏
         if (Object.keys(this.housePropety).length != 0){
           // this.urlList.getsfzdisplay = false

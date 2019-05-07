@@ -5,7 +5,7 @@
     <div class="form">
       <div class="divTxt">
         <span class="spanTxt">姓名</span>
-        <input class="inputTxt" placeholder="请输入姓名" name="name">
+        <input class="inputTxt" placeholder="请输入姓名" name="name" v-model="spouse.name">
       </div>
       <div class="divTxt">
         <span class="spanTxt">性别</span>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import * as common from "@/api/base.js"
  //import headertop from '@/common/header/head'
  import swipe from '@/common/swipe/swipe'
  import returnnext from '@/common/returnnext/returnnext'
@@ -72,12 +73,14 @@
    methods:{
           //子组件传过来的
           getsfz () {
-            var jsonstr = '{"name": "郑瑶珊","sex": "女","nation": "汉族","born": "19921126","address": "福建省福州市罗源县青禾家园6座404","idCardNo": "350123199211262424", "grantdept": "福州市公安分局罗源分局"}'
+            var jsonstr = '{"name": "郑瑶珊","sex": "女","nation": "汉族","born": "19921126","address": "福建省福州市罗源县青禾家园6座404","idCardNo": "350123199211262424", "grantDept": "福州市公安分局罗源分局","relation":"配偶"}'
             var obj = JSON.parse(jsonstr)
             this.spouse = obj
             var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
             ListObj.unshift(obj);//加入数组
             alert(JSON.stringify(ListObj))
+            common.loadData(ListObj[0]);//模拟自助机绑定
+            
             localStorage.setItem('PrintList',JSON.stringify(ListObj))
           },
           //子组件传来的事件
@@ -104,10 +107,10 @@
                   var list = JSON.parse(localStorage.getItem("PrintList") || '[]')
                   alert("读取缓存");
                   alert(JSON.stringify(list[0]));
-                  this.housePropety = list[0]
-                  common.loadData(list[0]);
+                  this.spouse = list[0]
+                  common.loadData(list[0]);//绑定表单
                   //读取到才隐藏
-                  if (Object.keys(this.housePropety).length != 0){
+                  if (Object.keys(this.spouse).length != 0){
                     alert("隐藏读取按钮")
                     //this.urlList.getsfzdisplay = false;
                     $(".getsfzBtn").hide();

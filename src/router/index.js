@@ -81,10 +81,10 @@ export default new Router({
       path: '/datepicker',
       component: () => import('@/pages/datepicker.vue')
     },
-    {
-      path: '/keyboard',
-      component: () => import('@/pages/keyboard.vue')
-    },
+    // {
+    //   path: '/keyboard',
+    //   component: () => import('@/pages/keyboard.vue')
+    // },
     
 
   ]
