@@ -3,11 +3,11 @@
     <canvas v-for="page in pages" :id="'the-canvas'+page" :key="page"></canvas>
 
     <div class="printDiv">
-      <button class="pdfBtn">打印PDF</button>
+      <button class="pdfBtn" @click="printPdf()">打印PDF</button>
       <!-- <mt-button size="large" @click="MSPrintByJS">testprint</mt-button> -->
     </div>
     <div class="returnDiv">
-      <button class="pdfBtn">返回</button>
+      <button class="pdfBtn" @click="returnhome()">返回</button>
       <!-- <mt-button size="large" @click="returnhome">返回首页</mt-button> -->
     </div>
   </div>
@@ -16,6 +16,7 @@
 <script>
 import PDFJS from 'pdfjs-dist'
 let Base64 = require('js-base64').Base64
+
 
 export default {
   data () {
@@ -66,32 +67,7 @@ export default {
         })
       })
     },
-    //测试打印pdf
-    MSPrintByJS:function(){
-      var request = {
-          "printData": "", 
-          "templateId": "3", 
-          "cutMode": "0", 
-          "attach": "附加信息", 
-          "htmlUrlInfo": {
-            "htmlUrl": this.printurl, 
-            "width": "240", 
-            "height": "228"
-          }
-      }
-      //console.log(request);
-      window.external.UniteMethod("MSPrintByJS",request)
-
-    },
-    MSPrintResultToJs:function(){
-      var response = window.external.UniteMethod("MSPrintResultToJs");
-      if (response.status == 1){
-        alert("成功!");
-      }
-      if(response.status == 0){
-        alert("打印失败!!")
-      }
-    },
+    
     //返回首页
     returnhome:function(){
         localStorage.clear();
@@ -102,11 +78,19 @@ export default {
           // }
         })
     },
-
+    //打印pdf
+    printPdf () {
+      alert("准备打印")
+      var landspace = "2"
+      var request = "{\"typeId\": \"7\", \"templateId\": \""+landspace+"\", \"landspace\": \"2\",	\"printType\": \"A4\", \"attach\": \"打印完成请取走打印材料\", \"wordInfo\": {\"filePath\":\"http://172.17.213.145:6060/test.pdf\"}}";//反斜杠正确
+      window.external.UniteMethod("OfficePrintByJs",request);
+    }
   },
   mounted () {
     //"printpdf\CacheFile\2019\2\21\20190201000059_mahic7_2019022117041366850.pdf"
+
     let url = this.$route.query.url
+    alert(url);
     this.loadFile(url)
   }
 }

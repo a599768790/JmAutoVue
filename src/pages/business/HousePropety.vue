@@ -131,9 +131,9 @@ import axios from 'axios'
         }else{
           this.$router.push({
           path: this.urlList.nexturl,
-          // query: {
-          //   id: id
-          // }
+          query: {
+            id: 9999
+          }
           })
         }
       }

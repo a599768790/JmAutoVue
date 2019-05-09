@@ -36,21 +36,16 @@ export function loadData(jsonStr){
 	}
 }
 
-// 转为json数据格式
-export function serializeObject () {
-	var o = {};
-	var a = this.serializeArray();
-	$.each(a, function() {
-			if (o[this.name]) {
-					if (!o[this.name].push) {
-							o[this.name] = [ o[this.name] ];
-					}
-					o[this.name].push(this.value || '');
-			} else {
-					o[this.name] = this.value || '';
-			}
-	});
-	return o;
+// 转为json对象
+export function transformToJson(formData){
+    var obj={}
+    for (var i in formData) {
+        /*[{"name":"user","value":"hpc"},{"name":"pwd","value":"123"},{"name":"sex","value":"M"},{"name":"age","value":"100"},{"name":"phone","value":"13011112222"},{"name":"email","value":"xxx@xxx.com"}]
+        */
+        //下标为的i的name做为json对象的key，下标为的i的value做为json对象的value
+        obj[formData[i].name]=formData[i]['value'];
+    }
+    return obj;
 }
 
 

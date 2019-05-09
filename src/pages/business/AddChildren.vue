@@ -2,17 +2,17 @@
  <div>
     <!-- <headertop :headerText="actualText"></headertop> -->
     <swipe></swipe>
-    <div class="form" id="childrenForm">
+    <form class="form" id="childrenForm">
       <!-- <div class="divTxt">
         <input id="numkeyboard1" class="numkeyboard" placeholder="请输入姓名222" onclick="showKB('numkeyboard1')" name="name" v-model="children.name">
       </div> -->
       <div class="divTxt">
         <span class="spanTxt">姓名</span>
-        <input id="numkeyboard1" class="numkeyboard inputTxt" value="子女111" placeholder="请输入姓名" @click="showKB('numkeyboard1')" name="name">
+        <input id="numkeyboard1" class="numkeyboard inputTxt" placeholder="请输入姓名" @click="showKB('numkeyboard1')" name="name">
       </div>
       <div class="divTxt">
         <span class="spanTxt">性别</span>
-        <input class="inputTxt" placeholder="请输入性别" @click="chooseSex" value="性别男" name="sex">
+        <input class="inputTxt" placeholder="请输入性别" @click="chooseSex" name="sex">
       </div>
       <div class="divTxt">
         <span class="spanTxt">出生</span>
@@ -28,13 +28,14 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input id="numkeyboard4" class="inputTxt" value="350212201010104515" placeholder="请输入身份证号" @touchstart.stop="idshow = true" @click="showKB('numkeyboard4')" name="idCardNo" v-model="children.idCardNo">
+        <input id="numkeyboard4" class="inputTxt" placeholder="请输入身份证号" @click="showKB('numkeyboard4')" name="idCardNo" v-model="children.idCardNo">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
         <input id="numkeyboard5" class="inputTxt" placeholder="请输入签发机关" name="grantDept" @click="showKB('numkeyboard5')"  v-model="children.grantDept">
       </div>
-    </div>
+    </form>
+
     <returnnext :url="urlList" @actualgetsfz='getsfz' @actualnextstep='nextstep'></returnnext>
     <bottom></bottom>
     <van-popup v-model="sexDisplay" :overlay="false">
@@ -57,14 +58,14 @@
             @cancel="nationonCancel"
         />
     </van-popup>
-    <van-number-keyboard
+    <!-- <van-number-keyboard
       :show="idshow"
       extra-key="."
       close-button-text="完成"
       @blur="idshow = false"
       @input="onInput"
       @delete="onDelete"
-    />
+    /> -->
 
  </div>
 </template>
@@ -130,14 +131,13 @@
           },
           //子组件传来的事件
           nextstep () {
-            // var obj = $('#childrenForm').serializeObject()
-            // console.log(obj);
-
-            // this.children = obj
-            // var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
-            // ListObj.unshift(obj);//加入数组
-            // alert(JSON.stringify(ListObj))
-            // localStorage.setItem('PrintList',JSON.stringify(ListObj))
+            var objdata = $('#childrenForm').serializeArray()
+            var obj = common.transformToJson(objdata);
+            this.children = obj
+            var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
+            ListObj.unshift(obj);//加入数组
+            alert(JSON.stringify(ListObj))
+            localStorage.setItem('PrintList',JSON.stringify(ListObj))
 
 
             var childYear = index.ReturnBirth(this.children.idCardNo)
@@ -202,15 +202,15 @@
           nationonCancel () {
             this.nationDisplay = false;
           },
-          //身份证
-          onInput(value) {
-            //alert(value);
-            //console.log(value)
-            this.children.certNo = value;
-          },
-          onDelete() {
-            alert('delete');
-          },
+          // //身份证
+          // onInput(value) {
+          //   //alert(value);
+          //   //console.log(value)
+          //   this.children.certNo = value;
+          // },
+          // onDelete() {
+          //   alert('delete');
+          // },
 
     }
  }

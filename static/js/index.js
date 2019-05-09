@@ -22,3 +22,13 @@ function showKB(tagId){
   window.external.UniteMethod("ShowKeyBordByJs",request );
 }
 
+//打印反馈
+function OfficePrintResultToJs(response){
+  var responseObj = eval('(' + response + ')');//字符串转对象
+    if(responseObj.status == 1){
+      alert("打印成功...");
+    }
+    if(responseObj.status == 0){
+      alert("打印失败...");
+    }
+}
