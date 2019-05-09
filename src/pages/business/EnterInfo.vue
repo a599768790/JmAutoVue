@@ -56,9 +56,6 @@
    },
    mounted () {
       this.loadPersons();
-
-      let id = this.$route.query.id
-      alert(id)
     },
    methods:{
           loadPersons () {

@@ -32,7 +32,7 @@
         <input class="inputTxt" placeholder="请输入签发机关" name="grantDept" v-model="housePropety.grantDept">
       </div>
     </div>
-    <returnnext :url="urlList" @actualgetsfz="getsfz" @actualnextstep="nextstep"></returnnext>
+    <returnnext :url="urlList" @actualgetsfz="zzjgetsfz" @actualnextstep="nextstep"></returnnext>
     <bottom></bottom>
  </div>
 </template>

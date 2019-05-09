@@ -17,7 +17,6 @@ function IDCardResultToJs(response){
 
 //键盘接口
 function showKB(tagId){
-
   var request="{'tagId':'numkeyboard','skin':'blue'}";
   window.external.UniteMethod("ShowKeyBordByJs",request );
 }

@@ -8,15 +8,15 @@
       </div> -->
       <div class="divTxt">
         <span class="spanTxt">姓名</span>
-        <input id="numkeyboard1" class="numkeyboard inputTxt" placeholder="请输入姓名" @click="showKB('numkeyboard1')" name="name">
+        <input id="numkeyboard1" class="numkeyboard inputTxt" @blur="closeKeyBoard" placeholder="请输入姓名" onclick="showKB('numkeyboard1')" name="name">
       </div>
       <div class="divTxt">
         <span class="spanTxt">性别</span>
-        <input class="inputTxt" placeholder="请输入性别" @click="chooseSex" name="sex">
+        <input class="inputTxt" placeholder="请输入性别" @click="chooseSex" name="sex" v-model="children.sex">
       </div>
       <div class="divTxt">
         <span class="spanTxt">出生</span>
-        <input id="numkeyboard2" class="numkeyboard inputTxt" placeholder="请输入出生年月" @click="showKB('numkeyboard2')" name="born" v-model="children.born">
+        <input id="numkeyboard2" class="numkeyboard inputTxt" @blur="closeKeyBoard" placeholder="请输入出生年月" onclick="showKB('numkeyboard2')" name="born" v-model="children.born">
       </div>
       <div class="divTxt">
         <span class="spanTxt">民族</span>
@@ -24,15 +24,15 @@
       </div>
       <div class="divTxt">
         <span class="spanTxt">地址</span>
-        <input id="numkeyboard3" class="numkeyboard inputTxt" placeholder="请输入地址" @click="showKB('numkeyboard3')" name="address" v-model="children.address">
+        <input id="numkeyboard3" class="numkeyboard inputTxt" @blur="closeKeyBoard" placeholder="请输入地址" onclick="showKB('numkeyboard3')" name="address" v-model="children.address">
       </div>
       <div class="divTxt">
         <span class="spanTxt">身份证号</span>
-        <input id="numkeyboard4" class="inputTxt" placeholder="请输入身份证号" @click="showKB('numkeyboard4')" name="idCardNo" v-model="children.idCardNo">
+        <input id="numkeyboard4" class="numkeyboard inputTxt" @blur="closeKeyBoard" placeholder="请输入身份证号" onclick="showKB('numkeyboard4')" name="idCardNo" v-model="children.idCardNo">
       </div>
       <div class="divTxt">
         <span class="spanTxt">签发机关</span>
-        <input id="numkeyboard5" class="inputTxt" placeholder="请输入签发机关" name="grantDept" @click="showKB('numkeyboard5')"  v-model="children.grantDept">
+        <input id="numkeyboard5" class="numkeyboard inputTxt" @blur="closeKeyBoard" placeholder="请输入签发机关" name="grantDept" onclick="showKB('numkeyboard5')"  v-model="children.grantDept">
       </div>
     </form>
 
@@ -58,14 +58,6 @@
             @cancel="nationonCancel"
         />
     </van-popup>
-    <!-- <van-number-keyboard
-      :show="idshow"
-      extra-key="."
-      close-button-text="完成"
-      @blur="idshow = false"
-      @input="onInput"
-      @delete="onDelete"
-    /> -->
 
  </div>
 </template>
@@ -120,6 +112,7 @@
      //index.Test()//引入外部js
     },
    methods:{
+          //本地模拟自助机读取
           getsfz () {
             var jsonstr = '{"name": "郑小小","sex": "女","nation": "汉族","born": "20191103","address": "福建省福州市罗源县青禾家园6座406","idCardNo": "350212201911032424", "grantDept": "福州市公安分局罗源分局","relation":"未成年子女"}'
             var obj = JSON.parse(jsonstr)
@@ -135,9 +128,9 @@
             var obj = common.transformToJson(objdata);
             this.children = obj
             var ListObj = JSON.parse(localStorage.getItem("PrintList") || '[]')//获取浏览器缓存转对象
-            ListObj.unshift(obj);//加入数组
-            alert(JSON.stringify(ListObj))
-            localStorage.setItem('PrintList',JSON.stringify(ListObj))
+            // ListObj.unshift(obj);//加入数组
+            // alert(JSON.stringify(ListObj))
+            // localStorage.setItem('PrintList',JSON.stringify(ListObj))
 
 
             var childYear = index.ReturnBirth(this.children.idCardNo)
@@ -151,12 +144,19 @@
                 alert("不能为空");
                 return;
             }
+            if (Object.keys(this.children.born).length == 0){
+                alert("出生不能为空");
+                return;
+            }
             //大于18岁不可以输入
             if(childAge > 18){
               alert("请输入未成年子女");
               return false;
             }
             else{
+                ListObj.unshift(obj);//加入数组
+                alert(JSON.stringify(ListObj))
+                localStorage.setItem('PrintList',JSON.stringify(ListObj))
                 this.$router.push({
                 path: this.urlList.nexturl,
                 // query: {
@@ -169,48 +169,32 @@
           chooseSex () {
               this.sexDisplay = true;
           },
+          //性别确认
           sexonConfirm(value, index) {
             this.children.sex = value;
             this.sexDisplay = false;
           },
+          //性别取消
           sexonCancel () {
             this.sexDisplay = false;
-          },
-          //选择日期
-          chooseBirth(mode) {
-            this.calendarshow = true;
-            this.mode = mode;
-            this.children.birthDate = '';
-          },
-          //填充
-          onChange(date) {
-            if (this.mode === 'single') {
-              this.children.birthDate = date.format('YYYY-MM-DD');
-            } 
-            // else {
-            //   this.date = JSON.stringify(date.map((item) => item.format('YYYY-MM-DD')));
-            // }
           },
           //选择民族
           chooseNation () {
             this.nationDisplay = true;
           },
+          //民族确定
           nationonConfirm(value, index) {
             this.children.nation = value;
             this.nationDisplay = false;
           },
+          //民族取消
           nationonCancel () {
             this.nationDisplay = false;
           },
-          // //身份证
-          // onInput(value) {
-          //   //alert(value);
-          //   //console.log(value)
-          //   this.children.certNo = value;
-          // },
-          // onDelete() {
-          //   alert('delete');
-          // },
+          //关闭键盘
+          closeKeyBoard () {
+            window.external.UniteMethod("CloseKeyBordByJs", "");
+          }
 
     }
  }

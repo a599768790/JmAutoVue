@@ -4,11 +4,9 @@
 
     <div class="printDiv">
       <button class="pdfBtn" @click="printPdf()">打印PDF</button>
-      <!-- <mt-button size="large" @click="MSPrintByJS">testprint</mt-button> -->
     </div>
     <div class="returnDiv">
       <button class="pdfBtn" @click="returnhome()">返回</button>
-      <!-- <mt-button size="large" @click="returnhome">返回首页</mt-button> -->
     </div>
   </div>
 </template>
