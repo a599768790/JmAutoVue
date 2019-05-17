@@ -80,7 +80,10 @@ export default {
     printPdf () {
       alert("准备打印")
       var landspace = "2"
-      var request = "{\"typeId\": \"7\", \"templateId\": \""+landspace+"\", \"landspace\": \"2\",	\"printType\": \"A4\", \"attach\": \"打印完成请取走打印材料\", \"wordInfo\": {\"filePath\":\"http://172.17.213.145:6060/test.pdf\"}}";//反斜杠正确
+      //var request = "{\"typeId\": \"7\", \"templateId\": \""+landspace+"\", \"landspace\": \"2\",	\"printType\": \"A4\", \"attach\": \"打印完成请取走打印材料\", \"wordInfo\": {\"filePath\":\"http://10.23.183.65:7002"+ this.$route.query.url +"\"}}";//错误
+      //var request = "{\"typeId\": \"7\", \"templateId\": \""+landspace+"\", \"landspace\": \"2\",	\"printType\": \"A4\", \"attach\": \"打印完成请取走打印材料\", \"wordInfo\": {\"filePath\":\"http://10.23.183.65:7002\" "+ this.$route.query.url +" \"}}";
+      var request = "{\"typeId\": \"7\", \"templateId\": \""+landspace+"\", \"landspace\": \"2\",	\"printType\": \"A4\", \"attach\": \"打印完成请取走打印材料\", \"wordInfo\": {\"filePath\":\"http://10.23.183.65:7002/test.pdf\"}}";
+      alert(request)
       window.external.UniteMethod("OfficePrintByJs",request);
     }
   },

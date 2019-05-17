@@ -9,8 +9,8 @@
         <button class="blueBtn">添加子女</button>
     </router-link>
     <button class="blueBtn" v-show="url.nextdisplay" @click="nextstep">下一步</button>
-    <!-- <button class="blueBtn" v-show="url.submitdisplay" @click="submit">提交</button> -->
-    <button class="blueBtn" v-show="url.submitdisplay" @click="submittoprint">提交</button>
+    <button class="blueBtn" v-show="url.submitdisplay" @click="submit">提交</button>
+    <!-- <button class="blueBtn" v-show="url.submitdisplay" @click="submittoprint">提交</button> -->
     
  </div>
 </template>
@@ -69,7 +69,7 @@
             console.log(familyMembers);
             let postData = {
                 "applyUser": list[selfIndexof].name,
-                "applyUserCardNO": list[selfIndexof].certNo,
+                "applyUserCardNO": list[selfIndexof].idCardNo,
                 "applyCardType": "身份证",
                 "isCardReader": true,
                 "familyMembers": familyMembers
